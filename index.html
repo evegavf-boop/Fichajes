@@ -882,8 +882,8 @@
             ];
             let opcionesHTML = '';
             
-            // Generar horas desde las 08:00 hasta las 23:45
-            for(let h = 8; h <= 23; h++) {
+            // Generar horas desde las 07:00 hasta las 23:45
+            for(let h = 7; h <= 23; h++) {
                 const horaStr = h.toString().padStart(2, '0');
                 opcionesHTML += `
                     <option value="${horaStr}:00">${horaStr}:00</option>

@@ -1573,15 +1573,38 @@
                 return;
             }
             
-            let csvContent = "Operaria,Dia,Fecha,Entrada,Salida,Total Horas\n";
+            const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+            // Función auxiliar para calcular el número de semana ISO
+            const getWeek = (dateStr) => {
+                const date = new Date(dateStr);
+                date.setHours(0, 0, 0, 0);
+                date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+                const week1 = new Date(date.getFullYear(), 0, 4);
+                return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+            };
+            
+            // Usamos punto y coma (;) para que Excel en España separe las columnas automáticamente
+            let csvContent = "Operaria;Año;Mes;Semana;Día de la Semana;Fecha;Tipo de Registro;Entrada;Salida;Total Horas\n";
+            
             data.forEach(reg => {
                 const especial = specialStatuses.includes(reg.horaEntrada);
-                const expEntrada = especial ? reg.horaEntrada : reg.horaEntrada;
-                const expSalida = especial ? '-' : reg.horaSalida;
-                const expTotal = especial ? '-' : reg.totalHoras;
                 const [y, m, d] = reg.fecha.split('-');
-                csvContent += `"${reg.operaria}","${reg.diaSemana}","${d}/${m}/${y}","${expEntrada}","${expSalida}","${expTotal}"\n`;
+                
+                const mesNombre = mesesNombres[parseInt(m) - 1];
+                const numSemana = getWeek(reg.fecha);
+                const tipoRegistro = especial ? reg.horaEntrada : "HORAS NORMALES";
+                
+                const expEntrada = especial ? '-' : reg.horaEntrada;
+                const expSalida = especial ? '-' : reg.horaSalida;
+                
+                // Si hay horas, cambiamos el punto por coma para que Excel lo detecte como número decimal (ej. 7,5 en lugar de 7.5)
+                const expTotal = especial ? '0' : String(reg.totalHoras).replace('.', ',');
+
+                csvContent += `"${reg.operaria}";"${y}";"${mesNombre}";"Semana ${numSemana}";"${reg.diaSemana}";"${d}/${m}/${y}";"${tipoRegistro}";"${expEntrada}";"${expSalida}";"${expTotal}"\n`;
             });
+
+            // \uFEFF es el BOM (Byte Order Mark) que fuerza a Excel a leer UTF-8 (para que los acentos salgan bien)
             const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);

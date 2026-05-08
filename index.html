@@ -881,11 +881,31 @@
                 document.getElementById('edit-entrada'), document.getElementById('edit-salida')
             ];
             let opcionesHTML = '';
+            
+            // Generar horas desde las 08:00 hasta las 23:45
             for(let h = 8; h <= 23; h++) {
                 const horaStr = h.toString().padStart(2, '0');
-                opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option><option value="${horaStr}:30">${horaStr}:30</option>`;
+                opcionesHTML += `
+                    <option value="${horaStr}:00">${horaStr}:00</option>
+                    <option value="${horaStr}:15">${horaStr}:15</option>
+                    <option value="${horaStr}:30">${horaStr}:30</option>
+                    <option value="${horaStr}:45">${horaStr}:45</option>
+                `;
             }
-            opcionesHTML += `<option value="00:00">00:00</option>`;
+            
+            // Añadir horas de la madrugada (00:00 a 02:00)
+            for(let h = 0; h <= 2; h++) {
+                const horaStr = h.toString().padStart(2, '0');
+                opcionesHTML += `
+                    <option value="${horaStr}:00">${horaStr}:00</option>
+                    ${h < 2 ? `
+                    <option value="${horaStr}:15">${horaStr}:15</option>
+                    <option value="${horaStr}:30">${horaStr}:30</option>
+                    <option value="${horaStr}:45">${horaStr}:45</option>
+                    ` : ''}
+                `;
+            }
+            
             selects.forEach(select => select.innerHTML += opcionesHTML);
         }
         generarHoras();

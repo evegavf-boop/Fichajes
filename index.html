@@ -135,7 +135,7 @@
                 </div>
                 <div>
                     <h1 class="text-4xl md:text-5xl font-medium text-white leading-none font-logo pr-2 drop-shadow-md flex items-center">
-                        <span class="text-base md:text-xl mr-1 font-bold tracking-widest mt-1">LA</span>mediterrània
+                        <span class="text-base md:text-xl mr-1 font-bold tracking-widest mt-1 uppercase">LA</span>mediterrània
                     </h1>
                 </div>
             </div>
@@ -154,16 +154,26 @@
         <div id="view-home" class="view-section active max-w-md mx-auto mt-12 md:mt-20">
             <div class="text-center mb-10">
                 <h2 class="text-3xl md:text-4xl font-black text-white mb-2 drop-shadow-md">Bienvenida</h2>
-                <p class="text-slate-200 font-medium text-lg drop-shadow-sm">Selecciona para registrar tu turno</p>
+                <p class="text-slate-200 font-medium text-lg drop-shadow-sm">Selecciona una opción para continuar</p>
             </div>
             
-            <button onclick="navigateTo('fichar')" class="w-full group relative flex flex-col items-center justify-center p-10 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all text-center transform hover:-translate-y-1">
-                <div class="bg-emerald-900/50 p-6 rounded-full text-emerald-400 mb-6 group-hover:scale-110 transition-transform shadow-inner border border-emerald-800/50">
-                    <i data-lucide="clock" class="w-12 h-12"></i>
-                </div>
-                <h3 class="text-3xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">FICHAJES</h3>
-                <p class="text-slate-300 font-medium">Anotar entrada y salida diaria</p>
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button onclick="navigateTo('fichar')" class="w-full h-full group relative flex flex-col items-center justify-center p-8 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all text-center transform hover:-translate-y-1">
+                    <div class="bg-emerald-900/50 p-6 rounded-full text-emerald-400 mb-6 group-hover:scale-110 transition-transform shadow-inner border border-emerald-800/50">
+                        <i data-lucide="clock" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">FICHAR</h3>
+                    <p class="text-xs text-slate-300 font-medium">Entrada y salida</p>
+                </button>
+
+                <button onclick="navigateTo('worker-auth')" class="w-full h-full group relative flex flex-col items-center justify-center p-8 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-blue-500/70 transition-all text-center transform hover:-translate-y-1">
+                    <div class="bg-blue-900/50 p-6 rounded-full text-blue-400 mb-6 group-hover:scale-110 transition-transform shadow-inner border border-blue-800/50">
+                        <i data-lucide="calendar-days" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">MIS HORAS</h3>
+                    <p class="text-xs text-slate-300 font-medium">Ver mi calendario</p>
+                </button>
+            </div>
         </div>
 
         <!-- PANTALLA 2: Fichaje (Formulario Wizard Paso a Paso) -->
@@ -558,6 +568,98 @@
             </div>
         </div>
 
+        <!-- PANTALLA 5: Auth Mis Horas -->
+        <div id="view-worker-auth" class="view-section max-w-md mx-auto mt-12 md:mt-20">
+            <div class="mb-6 flex items-center">
+                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
+                </button>
+            </div>
+            
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-8 text-center transition-colors">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-800/80 border border-slate-700/50 text-white mb-6 shadow-lg backdrop-blur-sm">
+                    <i data-lucide="calendar-user" class="w-10 h-10 text-blue-400"></i>
+                </div>
+                <h2 class="text-2xl font-black mb-2 text-white uppercase tracking-wide drop-shadow-md">Acceso a Registros</h2>
+                <p class="text-sm text-slate-300 mb-8 font-medium">Consulta tu calendario personal</p>
+                
+                <form id="workerAuthForm" onsubmit="iniciarWorkerAuth(event)" class="space-y-5 text-left">
+                    <div>
+                        <select id="workerAuthSelect" required class="w-full py-4 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white transition-shadow font-bold text-lg appearance-none shadow-inner backdrop-blur-sm">
+                            <option value="" disabled selected>Selecciona tu nombre...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="relative">
+                            <input type="tel" inputmode="numeric" id="workerAuthPin" style="-webkit-text-security: disc;" required placeholder="Tu PIN personal" class="w-full py-4 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white transition-shadow tracking-[0.5em] font-mono text-xl font-bold shadow-inner backdrop-blur-sm">
+                        </div>
+                    </div>
+                    
+                    <div id="errorWorkerAuth" class="hidden text-center p-3 bg-red-900/50 backdrop-blur-sm text-red-300 text-sm font-bold rounded-xl border border-red-800/50">
+                        PIN incorrecto
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg text-lg border border-blue-500/50">
+                        Ver mi Calendario
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PANTALLA 6: Calendario Trabajadora -->
+        <div id="view-worker-calendar" class="view-section max-w-4xl mx-auto mt-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+                <button onclick="navigateTo('home')" class="self-start sm:self-auto flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
+                </button>
+                <div class="flex items-center gap-2 px-4 py-2 bg-slate-800/80 border border-slate-700/50 rounded-xl backdrop-blur text-white shadow-inner">
+                    <i data-lucide="user-circle" class="w-5 h-5 text-blue-400"></i>
+                    <span class="font-bold text-sm tracking-wide" id="calendar-worker-name">Nombre</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-5 sm:p-8 transition-colors">
+                
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-slate-700/50 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-black text-white drop-shadow-md flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-6 h-6 text-blue-400"></i> Mi Calendario
+                        </h2>
+                        <p class="text-sm font-medium text-slate-400 mt-1">Selecciona el mes que deseas consultar</p>
+                    </div>
+                    
+                    <div class="w-full md:w-auto">
+                        <input type="month" id="workerCalendarMonth" class="w-full md:w-48 py-3 px-4 bg-slate-800/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white font-bold text-lg shadow-inner text-center" style="color-scheme: dark;">
+                    </div>
+                </div>
+
+                <!-- Resumen Superior -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Horas Acumuladas</span>
+                        <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-horas">0.00</span><span class="text-emerald-400 font-bold ml-1">h</span>
+                    </div>
+                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Días Fichados</span>
+                        <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-dias">0</span>
+                    </div>
+                </div>
+
+                <!-- Grid del Calendario -->
+                <div class="bg-slate-950/80 rounded-2xl border border-slate-800 p-4">
+                    <div id="worker-calendar-grid" class="grid grid-cols-7 gap-1 sm:gap-2">
+                        <!-- Generado por JS -->
+                    </div>
+                </div>
+                
+                <p class="text-center text-xs text-slate-500 mt-4 italic">Toca un día resaltado para ver los detalles del turno.</p>
+
+            </div>
+        </div>
+
     </div>
 
     <!-- VENTANA MODAL DE CONFIRMACIÓN (PARA OPERARIAS) -->
@@ -672,6 +774,29 @@
         </div>
     </div>
 
+    <!-- VENTANA MODAL DETALLE DÍA (TRABAJADORA) -->
+    <div id="modalDetalleDia" class="hidden fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+            
+            <div class="text-center mb-6">
+                <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 border border-slate-700/50 shadow-inner">
+                    <i data-lucide="calendar-search" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-black text-white">Detalle del Turno</h3>
+                <div id="detalle-dia-fecha" class="text-sm mt-1 text-slate-400 font-medium tracking-wide"></div>
+            </div>
+
+            <div id="detalle-dia-contenido" class="space-y-3 mb-8">
+                <!-- Se rellena con JS -->
+            </div>
+            
+            <button type="button" onclick="cerrarModalDetalleDia()" class="w-full py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
     <!-- CUSTOM MODALS (Reemplazo de alert/confirm/prompt nativos) -->
     <div id="customModal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl text-center">
@@ -680,7 +805,7 @@
             <input type="text" id="customModalInput" class="hidden w-full py-2.5 px-4 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-emerald-500/50 text-white font-bold mb-6 text-center shadow-inner">
             <div class="flex gap-3 justify-center">
                 <button type="button" id="customModalBtnCancel" class="hidden flex-1 py-3 px-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">Cancelar</button>
-                <button type="button" id="customModalBtnOk" class="flex-1 py-3 px-4 bg-emerald-600/90 hover:bg-emerald-500 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md">Aceptar</button>
+                <button type="button" id="customModalBtnOk" class="flex-1 py-3 px-4 bg-emerald-600/90 hover:bg-emerald-50 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md">Aceptar</button>
             </div>
         </div>
     </div>
@@ -762,13 +887,14 @@
         let NOMBRES = [];
         let PIN_OPERARIAS = {};
         let PIN_ADMIN = "admin123";
+        let currentCalendarWorker = ""; // Mantiene la sesión de la trabajadora en su calendario
         
         const TIPOS_DEFECTO = ["FIESTA", "BAJA", "PERSONAL"];
         let customTipos = [];
         let specialStatuses = [];
 
         function actualizarSelectsHTML() {
-            const selectsTrabajadoras = ['operaria', 'adminWorkerFilter', 'selectPinWorker', 'exportWorker'];
+            const selectsTrabajadoras = ['operaria', 'adminWorkerFilter', 'selectPinWorker', 'exportWorker', 'workerAuthSelect'];
             selectsTrabajadoras.forEach(id => {
                 const sel = document.getElementById(id);
                 if(!sel) return;
@@ -797,7 +923,6 @@
             const weekNum = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
             document.getElementById('adminWeekFilter').value = `${today.getFullYear()}-W${String(weekNum).padStart(2,'0')}`;
             
-            // --- NUEVO: Defaults Exportar ---
             document.getElementById('exportMonth').value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
             document.getElementById('exportWeek').value = '';
         }
@@ -896,14 +1021,14 @@
             // Añadir horas de la madrugada (00:00 a 02:00)
             for(let h = 0; h <= 2; h++) {
                 const horaStr = h.toString().padStart(2, '0');
-                opcionesHTML += `
-                    <option value="${horaStr}:00">${horaStr}:00</option>
-                    ${h < 2 ? `
+                opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option>`;
+                if(h < 2) {
+                    opcionesHTML += `
                     <option value="${horaStr}:15">${horaStr}:15</option>
                     <option value="${horaStr}:30">${horaStr}:30</option>
                     <option value="${horaStr}:45">${horaStr}:45</option>
-                    ` : ''}
-                `;
+                    `;
+                }
             }
             
             selects.forEach(select => select.innerHTML += opcionesHTML);
@@ -953,12 +1078,12 @@
         import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyB9PbJS02DWqrbQYLSC50cNhTWsUL9TwP4",
-            authDomain: "fichajes-9e04f.firebaseapp.com",
-            projectId: "fichajes-9e04f",
-            storageBucket: "fichajes-9e04f.firebasestorage.app",
-            messagingSenderId: "628635461198",
-            appId: "1:628635461198:web:6440bdae98afaa796d851f"
+            apiKey: "AIzaSyD2uji03dHWzBS_VIXD4meknlTvV7zJghs",
+            authDomain: "la-mediterrania.firebaseapp.com",
+            projectId: "la-mediterrania",
+            storageBucket: "la-mediterrania.firebasestorage.app",
+            messagingSenderId: "162840273406",
+            appId: "1:162840273406:web:429efd5324bb0462d560af"
         };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -971,6 +1096,30 @@
 
         const getFichajesRef = () => collection(db, 'artifacts', appId, 'public', 'data', 'fichajes');
         const getSettingsRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'configuracionGeneral');
+
+        function suscribirRegistrosFirebase() {
+            if (currentUser && !unsubscribeSnapshot) {
+                unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
+                    registrosGlobales = [];
+                    snapshot.forEach((doc) => registrosGlobales.push({ id: doc.id, ...doc.data() }));
+                    
+                    registrosGlobales.sort((a, b) => {
+                        if (a.fecha !== b.fecha) return new Date(b.fecha) - new Date(a.fecha);
+                        return new Date(b.timestamp) - new Date(a.timestamp);
+                    });
+                    
+                    if (document.getElementById('view-admin-panel').classList.contains('active')) {
+                        generarCuadranteHTML();
+                        actualizarPreviewExport();
+                    }
+                    if (document.getElementById('view-worker-calendar').classList.contains('active')) {
+                        renderWorkerCalendar();
+                    }
+                }, (error) => {
+                    console.error(error);
+                });
+            }
+        }
 
         async function guardarConfiguracionGlobal() {
             try {
@@ -1330,22 +1479,7 @@
 
         function iniciarPanelAdmin() {
             navigateTo('admin-panel');
-            if (currentUser && !unsubscribeSnapshot) {
-                unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
-                    registrosGlobales = [];
-                    snapshot.forEach((doc) => registrosGlobales.push({ id: doc.id, ...doc.data() }));
-                    
-                    registrosGlobales.sort((a, b) => {
-                        if (a.fecha !== b.fecha) return new Date(b.fecha) - new Date(a.fecha);
-                        return new Date(b.timestamp) - new Date(a.timestamp);
-                    });
-                    
-                    generarCuadranteHTML();
-                    actualizarPreviewExport();
-                }, (error) => {
-                    console.error(error);
-                });
-            }
+            suscribirRegistrosFirebase();
         }
 
         window.cerrarSesionAdmin = function() {
@@ -1524,7 +1658,6 @@
             actualizarSelectsHTML();
             renderizarAjustesTab();
         };
-
 
         // --- LÓGICA DE EXPORTACIÓN (EXCEL Y PDF) MODIFICADA ---
         function filtrarRegistrosParaExportar(checkWeek = false) {
@@ -1786,7 +1919,6 @@
             }
         };
 
-        // --- LÓGICA DEL POPUP DE INSTALACIÓN PARA iOS ---
         function checkIOSPrompt() {
             const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
             const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
@@ -1795,6 +1927,147 @@
             }
         }
         setTimeout(checkIOSPrompt, 1000);
+
+        // --- LÓGICA DE MIS HORAS (CALENDARIO TRABAJADORA) ---
+        window.iniciarWorkerAuth = function(e) {
+            e.preventDefault();
+            const worker = document.getElementById('workerAuthSelect').value;
+            const pin = document.getElementById('workerAuthPin').value;
+            const errorEl = document.getElementById('errorWorkerAuth');
+
+            if (worker && PIN_OPERARIAS[worker] === pin) {
+                errorEl.classList.add('hidden');
+                document.getElementById('workerAuthPin').value = '';
+                currentCalendarWorker = worker;
+                
+                // Mes actual por defecto
+                const today = new Date();
+                document.getElementById('workerCalendarMonth').value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+                
+                document.getElementById('calendar-worker-name').textContent = worker;
+                navigateTo('worker-calendar');
+                suscribirRegistrosFirebase();
+                
+                // Se renderiza con setTimeout para dar tiempo a que carguen los registros locales si ya los hay
+                setTimeout(renderWorkerCalendar, 100); 
+            } else {
+                errorEl.classList.remove('hidden');
+                setTimeout(() => errorEl.classList.add('hidden'), 3000);
+            }
+        }
+
+        window.renderWorkerCalendar = function() {
+            const monthInput = document.getElementById('workerCalendarMonth').value;
+            if(!monthInput || !currentCalendarWorker) return;
+
+            const [year, month] = monthInput.split('-');
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const firstDayDate = new Date(year, month - 1, 1);
+            let firstDayIndex = firstDayDate.getDay() - 1; 
+            if(firstDayIndex === -1) firstDayIndex = 6; 
+
+            let html = '';
+            const dayNames = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+            dayNames.forEach(d => html += `<div class="text-center text-xs font-black text-slate-400 py-3 bg-slate-900/90 rounded-lg">${d}</div>`);
+
+            // Rellenar días en blanco antes de que empiece el mes
+            for(let i = 0; i < firstDayIndex; i++) {
+                html += `<div class="p-2"></div>`;
+            }
+
+            let totalHorasMes = 0;
+            let diasTrabajados = 0;
+
+            for(let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${year}-${month}-${String(d).padStart(2,'0')}`;
+                const shifts = registrosGlobales.filter(r => r.operaria === currentCalendarWorker && r.fecha === dateStr);
+
+                const isToday = (dateStr === new Date().toISOString().split('T')[0]);
+                let ringClass = isToday ? 'ring-2 ring-emerald-500 ring-offset-2 ring-offset-slate-950' : '';
+
+                if(shifts.length > 0) {
+                    diasTrabajados++;
+                    let dayHtml = `<div onclick="abrirDetalleDiaTrabajador('${dateStr}')" class="cursor-pointer relative min-h-[60px] sm:min-h-[80px] p-1.5 sm:p-2 rounded-xl border border-slate-700/50 bg-slate-800/60 hover:bg-slate-700/80 transition-all group flex flex-col items-center justify-start shadow-sm hover:shadow-md hover:scale-105 ${ringClass}">
+                        <span class="text-sm font-bold text-slate-200 group-hover:text-white mb-1">${d}</span>`;
+                    
+                    shifts.forEach(shift => {
+                        const isSpecial = specialStatuses.includes(shift.horaEntrada);
+                        if(isSpecial) {
+                            let dotColor = "bg-purple-500";
+                            if(shift.horaEntrada === 'BAJA') dotColor = "bg-red-500";
+                            if(shift.horaEntrada === 'FIESTA') dotColor = "bg-orange-500";
+                            if(shift.horaEntrada === 'PERSONAL') dotColor = "bg-blue-500";
+                            dayHtml += `<div class="w-full text-center mt-1"><span class="inline-block w-2.5 h-2.5 rounded-full ${dotColor} shadow-[0_0_8px_rgba(0,0,0,0.8)]" title="${shift.horaEntrada}"></span></div>`;
+                        } else {
+                            totalHorasMes += Number(shift.totalHoras);
+                            dayHtml += `<div class="bg-emerald-900/80 border border-emerald-700/50 rounded flex items-center justify-center w-full py-0.5 px-1 mt-1 shadow-sm">
+                                <span class="text-[10px] sm:text-xs font-black text-emerald-300">${shift.totalHoras}h</span>
+                            </div>`;
+                        }
+                    });
+                    dayHtml += `</div>`;
+                    html += dayHtml;
+                } else {
+                    html += `<div class="min-h-[60px] sm:min-h-[80px] p-2 rounded-xl border border-transparent flex flex-col items-center justify-start opacity-40 ${ringClass}">
+                        <span class="text-sm font-medium text-slate-500">${d}</span>
+                    </div>`;
+                }
+            }
+
+            document.getElementById('worker-calendar-grid').innerHTML = html;
+            document.getElementById('worker-tot-horas').textContent = totalHorasMes.toFixed(2);
+            document.getElementById('worker-tot-dias').textContent = diasTrabajados;
+        }
+
+        window.abrirDetalleDiaTrabajador = function(dateStr) {
+            const shifts = registrosGlobales.filter(r => r.operaria === currentCalendarWorker && r.fecha === dateStr);
+            if(shifts.length === 0) return;
+
+            const [y, m, d] = dateStr.split('-');
+            document.getElementById('detalle-dia-fecha').textContent = `${d}/${m}/${y}`;
+            
+            let html = '';
+            shifts.forEach(shift => {
+                const isSpecial = specialStatuses.includes(shift.horaEntrada);
+                if(isSpecial) {
+                    html += `<div class="bg-slate-800/80 border border-slate-700/50 p-5 rounded-xl text-center shadow-inner">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Motivo / Tipo</span>
+                        <span class="text-xl font-black text-blue-400">${shift.horaEntrada}</span>
+                    </div>`;
+                } else {
+                    html += `<div class="bg-slate-800/80 border border-slate-700/50 p-5 rounded-xl flex justify-between items-center shadow-inner">
+                        <div class="text-center flex-1">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Entrada</span>
+                            <span class="text-xl font-black text-white">${shift.horaEntrada}</span>
+                        </div>
+                        <div class="h-10 w-px bg-slate-700/50 mx-2"></div>
+                        <div class="text-center flex-1">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Salida</span>
+                            <span class="text-xl font-black text-white">${shift.horaSalida}</span>
+                        </div>
+                        <div class="h-10 w-px bg-slate-700/50 mx-2"></div>
+                        <div class="text-center flex-1">
+                            <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider block mb-1">Total</span>
+                            <span class="text-xl font-black text-emerald-400">${shift.totalHoras}h</span>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            document.getElementById('detalle-dia-contenido').innerHTML = html;
+            document.getElementById('modalDetalleDia').classList.remove('hidden');
+            document.getElementById('modalDetalleDia').classList.add('flex');
+        }
+
+        window.cerrarModalDetalleDia = function() {
+            document.getElementById('modalDetalleDia').classList.add('hidden');
+            document.getElementById('modalDetalleDia').classList.remove('flex');
+        }
+
+        const elCalendarMonth = document.getElementById('workerCalendarMonth');
+        if(elCalendarMonth) {
+            elCalendarMonth.addEventListener('change', renderWorkerCalendar);
+        }
 
         lucide.createIcons();
     </script>

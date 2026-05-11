@@ -635,13 +635,8 @@
                 </div>
 
                 <!-- Resumen Superior -->
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Horas Acumuladas</span>
-                        <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-horas">0.00</span><span class="text-emerald-400 font-bold ml-1">h</span>
-                    </div>
-                    <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
+                <div class="flex justify-center mb-8">
+                    <div class="w-full max-w-sm bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
                         <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Días Fichados</span>
                         <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-dias">0</span>
@@ -2015,7 +2010,6 @@
             }
 
             document.getElementById('worker-calendar-grid').innerHTML = html;
-            document.getElementById('worker-tot-horas').textContent = totalHorasMes.toFixed(2);
             document.getElementById('worker-tot-dias').textContent = diasTrabajados;
         }
 

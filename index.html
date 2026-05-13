@@ -18,7 +18,7 @@
     <!-- Fuentes Elegantes para el Logo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Librerías Externas -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -46,7 +46,7 @@
 
         .font-logo {
             font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
         }
 
         .view-section { display: none; }
@@ -133,10 +133,9 @@
                 <div class="p-1">
                     <img src="https://raw.githubusercontent.com/AVS-PROJECTS33/La_mediterrania/main/Gemini_Generated_Image_m2vh8km2vh8km2vh.png" alt="Logo La Mediterrania" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover shadow-md">
                 </div>
-                <div>
-                    <h1 class="text-4xl md:text-5xl font-medium text-white leading-none font-logo pr-2 drop-shadow-md flex items-center">
-                        <span class="text-base md:text-xl mr-1 font-bold tracking-widest mt-1 uppercase">LA</span>mediterrània
-                    </h1>
+                <div class="flex items-center pt-1">
+                    <span class="text-lg md:text-xl font-logo text-white leading-none tracking-widest mt-1 uppercase opacity-90">la</span>
+                    <h1 class="text-4xl md:text-5xl font-normal text-white leading-none font-logo pr-2 drop-shadow-md ml-1 lowercase">mediterrània</h1>
                 </div>
             </div>
 
@@ -151,27 +150,33 @@
         </header>
 
         <!-- PANTALLA 1: Inicio (Para Empleados) -->
-        <div id="view-home" class="view-section active max-w-md mx-auto mt-12 md:mt-20">
-            <div class="text-center mb-10">
+        <div id="view-home" class="view-section active max-w-md mx-auto mt-8 md:mt-16">
+            <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-black text-white mb-2 drop-shadow-md">Bienvenida</h2>
                 <p class="text-slate-200 font-medium text-lg drop-shadow-sm">Selecciona una opción para continuar</p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button onclick="navigateTo('fichar')" class="w-full h-full group relative flex flex-col items-center justify-center p-8 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all text-center transform hover:-translate-y-1">
-                    <div class="bg-emerald-900/50 p-6 rounded-full text-emerald-400 mb-6 group-hover:scale-110 transition-transform shadow-inner border border-emerald-800/50">
+            <div class="space-y-6">
+                <!-- Botón Fichar -->
+                <button onclick="navigateTo('fichar')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all transform hover:-translate-y-1">
+                    <div class="bg-emerald-900/50 p-5 rounded-2xl text-emerald-400 mr-6 group-hover:scale-110 transition-transform shadow-inner border border-emerald-800/50 shrink-0">
                         <i data-lucide="clock" class="w-10 h-10"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">FICHAR</h3>
-                    <p class="text-xs text-slate-300 font-medium">Entrada y salida</p>
+                    <div class="text-left">
+                        <h3 class="text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">FICHAR</h3>
+                        <p class="text-slate-300 font-medium text-sm">Anotar entrada y salida diaria</p>
+                    </div>
                 </button>
 
-                <button onclick="navigateTo('worker-auth')" class="w-full h-full group relative flex flex-col items-center justify-center p-8 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-blue-500/70 transition-all text-center transform hover:-translate-y-1">
-                    <div class="bg-blue-900/50 p-6 rounded-full text-blue-400 mb-6 group-hover:scale-110 transition-transform shadow-inner border border-blue-800/50">
+                <!-- Botón Mis Horas -->
+                <button onclick="navigateTo('worker-login')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-blue-500/70 transition-all transform hover:-translate-y-1">
+                    <div class="bg-blue-900/50 p-5 rounded-2xl text-blue-400 mr-6 group-hover:scale-110 transition-transform shadow-inner border border-blue-800/50 shrink-0">
                         <i data-lucide="calendar-days" class="w-10 h-10"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">MIS HORAS</h3>
-                    <p class="text-xs text-slate-300 font-medium">Ver mi calendario</p>
+                    <div class="text-left">
+                        <h3 class="text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">MIS HORAS</h3>
+                        <p class="text-slate-300 font-medium text-sm">Consultar mi calendario y turnos</p>
+                    </div>
                 </button>
             </div>
         </div>
@@ -277,6 +282,100 @@
                     </div>
 
                 </form>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2B: Mis Horas (Login Operaria) -->
+        <div id="view-worker-login" class="view-section max-w-md mx-auto">
+            <div class="mb-6 flex items-center">
+                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-200 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
+                </button>
+            </div>
+            
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-6 sm:p-8 transition-colors min-h-[300px] flex flex-col justify-center">
+                <form id="workerLoginForm" class="w-full space-y-6 animate-fade-in">
+                    <div class="text-center mb-2">
+                        <div class="bg-blue-900/50 border border-blue-800/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 shadow-inner">
+                            <i data-lucide="calendar-search" class="w-8 h-8"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white drop-shadow-md">Consultar mis horas</h2>
+                        <p class="text-sm text-slate-300 mt-1">Identifícate para ver tu calendario</p>
+                    </div>
+
+                    <div class="space-y-4 max-w-sm mx-auto">
+                        <select id="workerLoginSelect" required class="w-full py-3 bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white transition-colors appearance-none font-bold text-lg cursor-pointer shadow-inner backdrop-blur-sm">
+                            <option value="" disabled selected>Selecciona tu nombre...</option>
+                        </select>
+
+                        <div class="relative">
+                            <input type="tel" style="-webkit-text-security: disc;" inputmode="numeric" id="workerLoginPin" required placeholder="PIN" class="w-full py-3 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white transition-colors font-black text-xl tracking-[0.5em] shadow-inner backdrop-blur-sm">
+                        </div>
+                    </div>
+                    
+                    <div id="errorWorkerLogin" class="hidden text-center p-3 bg-red-900/50 backdrop-blur-sm text-red-300 rounded-xl border border-red-800/50 text-sm font-bold max-w-xs mx-auto">
+                        <i data-lucide="alert-circle" class="w-4 h-4 inline-block mr-1 relative -top-0.5"></i> PIN incorrecto
+                    </div>
+
+                    <button type="submit" class="w-full max-w-xs mx-auto block flex items-center justify-center gap-2 bg-blue-600/90 hover:bg-blue-500 backdrop-blur-sm text-white font-black py-4 px-6 rounded-xl transition-all text-lg shadow-lg mt-6 active:scale-[0.98] border border-blue-500/50">
+                        <i data-lucide="log-in" class="w-5 h-5"></i>
+                        ACCEDER
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2C: Mis Horas (Panel Personal Calendario) -->
+        <div id="view-worker-panel" class="view-section">
+            <div class="mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-200 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur-md px-3 py-2 rounded-lg shadow-sm border border-slate-700/40 w-full sm:w-auto justify-center">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Salir de mi panel
+                </button>
+
+                <div class="flex items-center gap-3 bg-slate-900/60 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-700/40 w-full sm:w-auto justify-center">
+                    <div class="bg-blue-900/50 p-1.5 rounded-lg text-blue-400 border border-blue-800/50">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <span id="worker-panel-name" class="font-black text-white text-lg tracking-wide uppercase">Nombre</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-5 sm:p-8 transition-colors max-w-4xl mx-auto animate-fade-in">
+                
+                <!-- Selector de Mes -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl font-black text-white drop-shadow-md">Mi Calendario</h3>
+                        <p class="text-sm text-slate-400 mt-1">Toca un día para ver los detalles del turno</p>
+                    </div>
+                    <div class="w-full md:w-auto">
+                        <input type="month" id="workerCalendarMonth" class="w-full md:w-48 py-3 px-4 bg-slate-800/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white font-bold text-lg shadow-inner text-center" style="color-scheme: dark;">
+                    </div>
+                </div>
+
+                <!-- Resumen Superior -->
+                <div class="flex justify-center mb-8">
+                    <div class="w-full max-w-sm bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Días Fichados</span>
+                        <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-dias">0</span>
+                    </div>
+                </div>
+
+                <!-- Grid del Calendario -->
+                <div class="bg-slate-950/80 rounded-2xl border border-slate-800 p-4">
+                    <div id="worker-calendar-grid" class="grid grid-cols-7 gap-1 sm:gap-2">
+                        <!-- Cabeceras Días -->
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Lun</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Mar</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Mié</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Jue</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Vie</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Sáb</div>
+                        <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Dom</div>
+                        <!-- Autocompletado JS -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -485,7 +584,7 @@
                             <button onclick="generarExcelPersonalizado()" class="group bg-slate-800/80 hover:bg-emerald-900/50 border border-slate-700 hover:border-emerald-500/50 p-6 rounded-2xl text-left transition-all relative overflow-hidden">
                                 <i data-lucide="file-spreadsheet" class="w-10 h-10 text-emerald-500 mb-4 group-hover:scale-110 transition-transform"></i>
                                 <h4 class="text-xl font-bold text-white mb-1">Descargar Excel (CSV)</h4>
-                                <p class="text-xs text-slate-400">Ideal para cálculos en hojas de cálculo.</p>
+                                <p class="text-xs text-slate-400">Datos detallados, listo para filtros y tablas dinámicas.</p>
                             </button>
                             
                             <button onclick="generarPDFPersonalizado()" class="group bg-slate-800/80 hover:bg-red-900/40 border border-slate-700 hover:border-red-500/50 p-6 rounded-2xl text-left transition-all relative overflow-hidden">
@@ -496,7 +595,7 @@
                         </div>
                         
                         <div class="mt-8 max-w-2xl mx-auto">
-                            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide mb-4">Vista previa (Últimos 5 registros)</h4>
+                            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide mb-4">Vista previa (Últimos 5 registros filtrados)</h4>
                             <div class="overflow-x-auto rounded-xl border border-slate-700/50 bg-slate-950">
                                 <table class="w-full text-left text-sm text-slate-300">
                                     <tbody id="previewTablaExport" class="divide-y divide-slate-800">
@@ -568,93 +667,6 @@
             </div>
         </div>
 
-        <!-- PANTALLA 5: Auth Mis Horas -->
-        <div id="view-worker-auth" class="view-section max-w-md mx-auto mt-12 md:mt-20">
-            <div class="mb-6 flex items-center">
-                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
-                </button>
-            </div>
-            
-            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-8 text-center transition-colors">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-800/80 border border-slate-700/50 text-white mb-6 shadow-lg backdrop-blur-sm">
-                    <i data-lucide="calendar-user" class="w-10 h-10 text-blue-400"></i>
-                </div>
-                <h2 class="text-2xl font-black mb-2 text-white uppercase tracking-wide drop-shadow-md">Acceso a Registros</h2>
-                <p class="text-sm text-slate-300 mb-8 font-medium">Consulta tu calendario personal</p>
-                
-                <form id="workerAuthForm" onsubmit="iniciarWorkerAuth(event)" class="space-y-5 text-left">
-                    <div>
-                        <select id="workerAuthSelect" required class="w-full py-4 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white transition-shadow font-bold text-lg appearance-none shadow-inner backdrop-blur-sm">
-                            <option value="" disabled selected>Selecciona tu nombre...</option>
-                        </select>
-                    </div>
-                    <div>
-                        <div class="relative">
-                            <input type="tel" inputmode="numeric" id="workerAuthPin" style="-webkit-text-security: disc;" required placeholder="Tu PIN personal" class="w-full py-4 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white transition-shadow tracking-[0.5em] font-mono text-xl font-bold shadow-inner backdrop-blur-sm">
-                        </div>
-                    </div>
-                    
-                    <div id="errorWorkerAuth" class="hidden text-center p-3 bg-red-900/50 backdrop-blur-sm text-red-300 text-sm font-bold rounded-xl border border-red-800/50">
-                        PIN incorrecto
-                    </div>
-
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg text-lg border border-blue-500/50">
-                        Ver mi Calendario
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- PANTALLA 6: Calendario Trabajadora -->
-        <div id="view-worker-calendar" class="view-section max-w-4xl mx-auto mt-6">
-            <div class="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
-                <button onclick="navigateTo('home')" class="self-start sm:self-auto flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors bg-slate-900/60 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
-                </button>
-                <div class="flex items-center gap-2 px-4 py-2 bg-slate-800/80 border border-slate-700/50 rounded-xl backdrop-blur text-white shadow-inner">
-                    <i data-lucide="user-circle" class="w-5 h-5 text-blue-400"></i>
-                    <span class="font-bold text-sm tracking-wide" id="calendar-worker-name">Nombre</span>
-                </div>
-            </div>
-
-            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-5 sm:p-8 transition-colors">
-                
-                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-slate-700/50 pb-6">
-                    <div>
-                        <h2 class="text-2xl font-black text-white drop-shadow-md flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-6 h-6 text-blue-400"></i> Mi Calendario
-                        </h2>
-                        <p class="text-sm font-medium text-slate-400 mt-1">Selecciona el mes que deseas consultar</p>
-                    </div>
-                    
-                    <div class="w-full md:w-auto">
-                        <input type="month" id="workerCalendarMonth" class="w-full md:w-48 py-3 px-4 bg-slate-800/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500 text-white font-bold text-lg shadow-inner text-center" style="color-scheme: dark;">
-                    </div>
-                </div>
-
-                <!-- Resumen Superior -->
-                <div class="flex justify-center mb-8">
-                    <div class="w-full max-w-sm bg-slate-950/60 border border-slate-800 p-4 rounded-2xl text-center shadow-inner relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Días Fichados</span>
-                        <span class="text-3xl font-black text-white drop-shadow-md" id="worker-tot-dias">0</span>
-                    </div>
-                </div>
-
-                <!-- Grid del Calendario -->
-                <div class="bg-slate-950/80 rounded-2xl border border-slate-800 p-4">
-                    <div id="worker-calendar-grid" class="grid grid-cols-7 gap-1 sm:gap-2">
-                        <!-- Generado por JS -->
-                    </div>
-                </div>
-                
-                <p class="text-center text-xs text-slate-500 mt-4 italic">Toca un día resaltado para ver los detalles del turno.</p>
-
-            </div>
-        </div>
-
     </div>
 
     <!-- VENTANA MODAL DE CONFIRMACIÓN (PARA OPERARIAS) -->
@@ -691,6 +703,31 @@
                 </button>
                 <button type="button" id="btnConfirmarFinal" onclick="ejecutarGuardadoFirebase()" class="flex-[1.5] py-3.5 px-4 bg-emerald-600/90 hover:bg-emerald-50 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md flex justify-center items-center gap-2">
                     <i data-lucide="check" class="w-5 h-5"></i> SÍ, GUARDAR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VENTANA MODAL DE DETALLE DÍA (OPERARIA MIS HORAS) -->
+    <div id="modalDetalleDia" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+            
+            <div class="text-center mb-6">
+                <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 border border-slate-700/50 shadow-inner">
+                    <i data-lucide="calendar-check-2" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white">Detalle del turno</h3>
+                <p id="detalle-dia-fecha" class="text-sm text-blue-400 font-bold mt-1 uppercase tracking-wider"></p>
+            </div>
+            
+            <div id="detalle-dia-contenido" class="bg-slate-950/60 rounded-2xl p-5 mb-6 border border-slate-800/60 shadow-inner space-y-3">
+                <!-- Se rellena con JS -->
+            </div>
+            
+            <div class="mt-8">
+                <button type="button" onclick="cerrarModalDetalleDia()" class="w-full py-3.5 px-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">
+                    Cerrar
                 </button>
             </div>
         </div>
@@ -769,90 +806,8 @@
         </div>
     </div>
 
-    <!-- VENTANA MODAL DETALLE DÍA (TRABAJADORA) -->
-    <div id="modalDetalleDia" class="hidden fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
-            
-            <div class="text-center mb-6">
-                <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 border border-slate-700/50 shadow-inner">
-                    <i data-lucide="calendar-search" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-xl font-black text-white">Detalle del Turno</h3>
-                <div id="detalle-dia-fecha" class="text-sm mt-1 text-slate-400 font-medium tracking-wide"></div>
-            </div>
-
-            <div id="detalle-dia-contenido" class="space-y-3 mb-8">
-                <!-- Se rellena con JS -->
-            </div>
-            
-            <button type="button" onclick="cerrarModalDetalleDia()" class="w-full py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">
-                Cerrar
-            </button>
-        </div>
-    </div>
-
-    <!-- CUSTOM MODALS (Reemplazo de alert/confirm/prompt nativos) -->
-    <div id="customModal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl text-center">
-            <h3 id="customModalTitle" class="text-xl font-black text-white mb-4">Aviso</h3>
-            <p id="customModalMessage" class="text-slate-300 text-sm mb-6"></p>
-            <input type="text" id="customModalInput" class="hidden w-full py-2.5 px-4 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-emerald-500/50 text-white font-bold mb-6 text-center shadow-inner">
-            <div class="flex gap-3 justify-center">
-                <button type="button" id="customModalBtnCancel" class="hidden flex-1 py-3 px-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">Cancelar</button>
-                <button type="button" id="customModalBtnOk" class="flex-1 py-3 px-4 bg-emerald-600/90 hover:bg-emerald-50 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md">Aceptar</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Firebase y Lógica -->
     <script type="module">
-        window.customAlert = function(msg) {
-            return new Promise((resolve) => {
-                const modal = document.getElementById('customModal');
-                document.getElementById('customModalTitle').innerText = "Aviso";
-                document.getElementById('customModalMessage').innerText = msg;
-                document.getElementById('customModalInput').classList.add('hidden');
-                document.getElementById('customModalBtnCancel').classList.add('hidden');
-                const btnOk = document.getElementById('customModalBtnOk');
-                btnOk.onclick = () => { modal.classList.add('hidden'); resolve(); };
-                modal.classList.remove('hidden');
-            });
-        };
-
-        window.customConfirm = function(msg) {
-            return new Promise((resolve) => {
-                const modal = document.getElementById('customModal');
-                document.getElementById('customModalTitle').innerText = "Confirmación";
-                document.getElementById('customModalMessage').innerText = msg;
-                document.getElementById('customModalInput').classList.add('hidden');
-                const btnCancel = document.getElementById('customModalBtnCancel');
-                const btnOk = document.getElementById('customModalBtnOk');
-                btnCancel.classList.remove('hidden');
-                btnCancel.onclick = () => { modal.classList.add('hidden'); resolve(false); };
-                btnOk.onclick = () => { modal.classList.add('hidden'); resolve(true); };
-                modal.classList.remove('hidden');
-            });
-        };
-
-        window.customPrompt = function(msg, defaultValue = "") {
-            return new Promise((resolve) => {
-                const modal = document.getElementById('customModal');
-                document.getElementById('customModalTitle').innerText = "Ingresar dato";
-                document.getElementById('customModalMessage').innerText = msg;
-                const input = document.getElementById('customModalInput');
-                input.value = defaultValue;
-                input.classList.remove('hidden');
-                const btnCancel = document.getElementById('customModalBtnCancel');
-                const btnOk = document.getElementById('customModalBtnOk');
-                btnCancel.classList.remove('hidden');
-                btnCancel.onclick = () => { modal.classList.add('hidden'); resolve(null); };
-                btnOk.onclick = () => { modal.classList.add('hidden'); resolve(input.value); };
-                modal.classList.remove('hidden');
-                setTimeout(() => input.focus(), 100);
-            });
-        };
-
         // --- NAVEGACIÓN Y UI ---
         window.navigateTo = function(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
@@ -862,6 +817,8 @@
                 window.resetWizard();
                 document.getElementById('adminLoginForm').reset();
                 document.getElementById('errorPinAdmin').classList.add('hidden');
+                document.getElementById('workerLoginForm').reset();
+                document.getElementById('errorWorkerLogin').classList.add('hidden');
                 window.cerrarModalConfirmacion();
             }
         };
@@ -876,20 +833,21 @@
         const activeUserName = document.getElementById('active-user-name');
         const msgExito = document.getElementById('msgExito');
         const modalConfirmacion = document.getElementById('modalConfirmacion');
+        const modalDetalleDia = document.getElementById('modalDetalleDia');
         
         // Variables globales y de Estado Dinámico
         const NOMBRES_DEFECTO = ["Sol", "Denise", "Douba", "Valentina", "Mati", "Mariana"];
         let NOMBRES = [];
         let PIN_OPERARIAS = {};
         let PIN_ADMIN = "admin123";
-        let currentCalendarWorker = ""; // Mantiene la sesión de la trabajadora en su calendario
+        let WORKER_LOGGED_IN = null; // Para la vista "Mis Horas"
         
         const TIPOS_DEFECTO = ["FIESTA", "BAJA", "PERSONAL"];
         let customTipos = [];
         let specialStatuses = [];
 
         function actualizarSelectsHTML() {
-            const selectsTrabajadoras = ['operaria', 'adminWorkerFilter', 'selectPinWorker', 'exportWorker', 'workerAuthSelect'];
+            const selectsTrabajadoras = ['operaria', 'adminWorkerFilter', 'selectPinWorker', 'exportWorker', 'workerLoginSelect'];
             selectsTrabajadoras.forEach(id => {
                 const sel = document.getElementById(id);
                 if(!sel) return;
@@ -920,6 +878,8 @@
             
             document.getElementById('exportMonth').value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
             document.getElementById('exportWeek').value = '';
+            
+            document.getElementById('workerCalendarMonth').value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
         }
         
         function actualizarInfoHoy() {
@@ -952,7 +912,7 @@
         }
         
         actualizarInfoHoy();
-        setCurrentWeek(); // Inicializamos los valores por defecto
+        setCurrentWeek();
 
         window.resetWizard = function() {
             document.getElementById('fichajeForm').reset();
@@ -995,6 +955,7 @@
             }
         });
 
+        // Generar horas en intervalos de 15 min (De 07:00 a 02:00)
         function generarHoras() {
             const selects = [
                 document.getElementById('horaEntrada'), document.getElementById('horaSalida'),
@@ -1002,27 +963,22 @@
             ];
             let opcionesHTML = '';
             
-            // Generar horas desde las 07:00 hasta las 23:45
+            // Desde las 07:00 hasta las 23:45
             for(let h = 7; h <= 23; h++) {
                 const horaStr = h.toString().padStart(2, '0');
-                opcionesHTML += `
-                    <option value="${horaStr}:00">${horaStr}:00</option>
-                    <option value="${horaStr}:15">${horaStr}:15</option>
-                    <option value="${horaStr}:30">${horaStr}:30</option>
-                    <option value="${horaStr}:45">${horaStr}:45</option>
-                `;
+                opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option>`;
+                opcionesHTML += `<option value="${horaStr}:15">${horaStr}:15</option>`;
+                opcionesHTML += `<option value="${horaStr}:30">${horaStr}:30</option>`;
+                opcionesHTML += `<option value="${horaStr}:45">${horaStr}:45</option>`;
             }
-            
-            // Añadir horas de la madrugada (00:00 a 02:00)
+            // De 00:00 a 02:00
             for(let h = 0; h <= 2; h++) {
                 const horaStr = h.toString().padStart(2, '0');
                 opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option>`;
-                if(h < 2) {
-                    opcionesHTML += `
-                    <option value="${horaStr}:15">${horaStr}:15</option>
-                    <option value="${horaStr}:30">${horaStr}:30</option>
-                    <option value="${horaStr}:45">${horaStr}:45</option>
-                    `;
+                if (h < 2) {
+                    opcionesHTML += `<option value="${horaStr}:15">${horaStr}:15</option>`;
+                    opcionesHTML += `<option value="${horaStr}:30">${horaStr}:30</option>`;
+                    opcionesHTML += `<option value="${horaStr}:45">${horaStr}:45</option>`;
                 }
             }
             
@@ -1034,10 +990,15 @@
         function calcularTotalHoras(inicio, fin) {
             let [h1, m1] = inicio.split(':').map(Number);
             let [h2, m2] = fin.split(':').map(Number);
-            if (h2 === 0 && m2 === 0) h2 = 24;
+            
+            // Si la hora de salida es 00, 01 o 02 de la madrugada, sumamos 24 horas para el cálculo correcto
+            if (h2 >= 0 && h2 <= 2) h2 += 24;
+            
             let f1 = new Date(2000, 0, 1, h1, m1);
             let f2 = new Date(2000, 0, 1, h2, m2);
-            if (f2 < f1) f2.setDate(f2.getDate() + 1);
+            
+            if (f2 < f1) f2.setDate(f2.getDate() + 1); // Fallback por si acaso
+            
             return (f2 - f1) / (1000 * 60 * 60);
         }
 
@@ -1067,18 +1028,152 @@
             modalConfirmacion.classList.add('flex');
         });
 
+        // --- GESTIÓN "MIS HORAS" (Login Operaria) ---
+        document.getElementById('workerLoginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const worker = document.getElementById('workerLoginSelect').value;
+            const pin = document.getElementById('workerLoginPin').value;
+            const errorElement = document.getElementById('errorWorkerLogin');
+
+            if (pin === PIN_OPERARIAS[worker]) {
+                errorElement.classList.add('hidden');
+                document.getElementById('workerLoginPin').value = '';
+                WORKER_LOGGED_IN = worker;
+                iniciarPanelWorker();
+            } else {
+                errorElement.classList.remove('hidden');
+                setTimeout(() => errorElement.classList.add('hidden'), 3000);
+            }
+        });
+
+        function iniciarPanelWorker() {
+            navigateTo('worker-panel');
+            document.getElementById('worker-panel-name').textContent = WORKER_LOGGED_IN;
+            generarCalendarioWorker();
+        }
+
+        document.getElementById('workerCalendarMonth').addEventListener('change', generarCalendarioWorker);
+
+        function generarCalendarioWorker() {
+            if(!WORKER_LOGGED_IN) return;
+            const monthVal = document.getElementById('workerCalendarMonth').value; // YYYY-MM
+            if(!monthVal) return;
+
+            const [yearStr, monthStr] = monthVal.split('-');
+            const year = parseInt(yearStr);
+            const month = parseInt(monthStr) - 1;
+
+            const primerDiaMes = new Date(year, month, 1);
+            const ultimoDiaMes = new Date(year, month + 1, 0);
+            
+            // Ajustar para que la semana empiece en Lunes (1) en vez de Domingo (0)
+            let diaSemanaInicio = primerDiaMes.getDay();
+            diaSemanaInicio = diaSemanaInicio === 0 ? 6 : diaSemanaInicio - 1; 
+
+            let diasTrabajados = 0;
+            let html = '';
+
+            // Huecos vacíos antes del primer día del mes
+            for (let i = 0; i < diaSemanaInicio; i++) {
+                html += `<div class="aspect-square rounded-xl bg-slate-900/30 border border-transparent"></div>`;
+            }
+
+            // Días del mes
+            for (let d = 1; d <= ultimoDiaMes.getDate(); d++) {
+                const dateISO = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                // Buscar si hay registro de esa operaria ese día
+                const turno = registrosGlobales.find(r => r.operaria === WORKER_LOGGED_IN && r.fecha === dateISO);
+
+                if (turno) {
+                    const isSpecial = specialStatuses.includes(turno.horaEntrada);
+                    diasTrabajados++;
+
+                    let styleClass = "bg-emerald-900/40 border border-emerald-500/50 text-emerald-400 cursor-pointer hover:bg-emerald-800/60 transition-colors shadow-sm";
+                    if(isSpecial) {
+                        if(turno.horaEntrada === 'BAJA') styleClass = "bg-red-900/40 border border-red-500/50 text-red-400 cursor-pointer hover:bg-red-800/60";
+                        else if(turno.horaEntrada === 'PERSONAL') styleClass = "bg-blue-900/40 border border-blue-500/50 text-blue-400 cursor-pointer hover:bg-blue-800/60";
+                        else styleClass = "bg-orange-900/40 border border-orange-500/50 text-orange-400 cursor-pointer hover:bg-orange-800/60";
+                    }
+
+                    html += `<div onclick="abrirDetalleDiaTrabajador('${dateISO}')" class="aspect-square rounded-xl flex flex-col items-center justify-center relative ${styleClass}">
+                        <span class="text-sm sm:text-base font-black">${d}</span>
+                        ${!isSpecial ? `<span class="text-[10px] sm:text-xs font-bold mt-0.5 opacity-80">${turno.totalHoras}h</span>` : `<i data-lucide="info" class="w-3 h-3 mt-1 opacity-70"></i>`}
+                    </div>`;
+                } else {
+                    html += `<div class="aspect-square rounded-xl flex flex-col items-center justify-center bg-slate-900/50 border border-slate-800/50 text-slate-500">
+                        <span class="text-sm font-medium text-slate-500">${d}</span>
+                    </div>`;
+                }
+            }
+
+            document.getElementById('worker-calendar-grid').innerHTML = html;
+            document.getElementById('worker-tot-dias').textContent = diasTrabajados;
+            lucide.createIcons();
+        }
+
+        window.abrirDetalleDiaTrabajador = function(dateStr) {
+            const turno = registrosGlobales.find(r => r.operaria === WORKER_LOGGED_IN && r.fecha === dateStr);
+            if(!turno) return;
+
+            const [y, m, d] = dateStr.split('-');
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const dateObj = new Date(y, m-1, d);
+            const nombreDia = dias[dateObj.getDay()];
+            
+            document.getElementById('detalle-dia-fecha').textContent = `${nombreDia}, ${d}/${m}/${y}`;
+            
+            let htmlDetalle = '';
+            const isSpecial = specialStatuses.includes(turno.horaEntrada);
+
+            if(isSpecial) {
+                let color = "text-orange-400";
+                if(turno.horaEntrada === 'BAJA') color = "text-red-400";
+                if(turno.horaEntrada === 'PERSONAL') color = "text-blue-400";
+                htmlDetalle = `
+                    <div class="text-center py-4">
+                        <span class="block text-slate-400 text-sm font-medium mb-1">Motivo / Tipo</span>
+                        <span class="font-black text-2xl tracking-wide ${color}">${turno.horaEntrada === 'PERSONAL' ? 'DÍA PERSONAL' : turno.horaEntrada}</span>
+                    </div>
+                `;
+            } else {
+                htmlDetalle = `
+                    <div class="flex justify-between items-center border-b border-slate-800/60 pb-3">
+                        <span class="text-slate-400 text-sm font-medium">Hora de Entrada</span>
+                        <span class="font-black text-white text-lg drop-shadow-sm">${turno.horaEntrada}</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-slate-800/60 pb-3 pt-3">
+                        <span class="text-slate-400 text-sm font-medium">Hora de Salida</span>
+                        <span class="font-black text-white text-lg drop-shadow-sm">${turno.horaSalida}</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-3">
+                        <span class="text-slate-400 text-sm font-medium">Total Horas</span>
+                        <span class="font-black text-emerald-400 text-xl tracking-wide drop-shadow-sm">${turno.totalHoras} h</span>
+                    </div>
+                `;
+            }
+
+            document.getElementById('detalle-dia-contenido').innerHTML = htmlDetalle;
+            modalDetalleDia.classList.remove('hidden');
+            modalDetalleDia.classList.add('flex');
+        };
+
+        window.cerrarModalDetalleDia = function() {
+            modalDetalleDia.classList.add('hidden');
+            modalDetalleDia.classList.remove('flex');
+        };
+
         // --- IMPORTACIONES DE FIREBASE ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyD2uji03dHWzBS_VIXD4meknlTvV7zJghs",
-            authDomain: "la-mediterrania.firebaseapp.com",
-            projectId: "la-mediterrania",
-            storageBucket: "la-mediterrania.firebasestorage.app",
-            messagingSenderId: "162840273406",
-            appId: "1:162840273406:web:429efd5324bb0462d560af"
+            apiKey: "AIzaSyB9PbJS02DWqrbQYLSC50cNhTWsUL9TwP4",
+            authDomain: "fichajes-9e04f.firebaseapp.com",
+            projectId: "fichajes-9e04f",
+            storageBucket: "fichajes-9e04f.firebasestorage.app",
+            messagingSenderId: "628635461198",
+            appId: "1:628635461198:web:6440bdae98afaa796d851f"
         };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -1091,30 +1186,6 @@
 
         const getFichajesRef = () => collection(db, 'artifacts', appId, 'public', 'data', 'fichajes');
         const getSettingsRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'configuracionGeneral');
-
-        function suscribirRegistrosFirebase() {
-            if (currentUser && !unsubscribeSnapshot) {
-                unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
-                    registrosGlobales = [];
-                    snapshot.forEach((doc) => registrosGlobales.push({ id: doc.id, ...doc.data() }));
-                    
-                    registrosGlobales.sort((a, b) => {
-                        if (a.fecha !== b.fecha) return new Date(b.fecha) - new Date(a.fecha);
-                        return new Date(b.timestamp) - new Date(a.timestamp);
-                    });
-                    
-                    if (document.getElementById('view-admin-panel').classList.contains('active')) {
-                        generarCuadranteHTML();
-                        actualizarPreviewExport();
-                    }
-                    if (document.getElementById('view-worker-calendar').classList.contains('active')) {
-                        renderWorkerCalendar();
-                    }
-                }, (error) => {
-                    console.error(error);
-                });
-            }
-        }
 
         async function guardarConfiguracionGlobal() {
             try {
@@ -1207,7 +1278,7 @@
                     btnConfirmarFinal.innerHTML = originalContent;
                 }, 3000);
             } catch (error) {
-                await customAlert("Error al intentar guardar. Revisa tu conexión a internet.");
+                alert("Error al intentar guardar. Revisa tu conexión a internet.");
                 btnConfirmarFinal.disabled = false;
                 btnConfirmarFinal.innerHTML = originalContent;
             }
@@ -1257,6 +1328,7 @@
             }
         };
 
+        // CORRECCIÓN ZONA HORARIA: Cálculo de Lunes a Domingo forzando fecha local
         function getLunesDomingo(weekStr) {
             if(!weekStr) return [];
             const [year, week] = weekStr.split('-W');
@@ -1268,9 +1340,15 @@
             for(let i=0; i<7; i++) {
                 const cur = new Date(start);
                 cur.setDate(start.getDate() + i);
-                const iso = cur.toISOString().split('T')[0];
-                const ddmm = `${String(cur.getDate()).padStart(2,'0')}/${String(cur.getMonth()+1).padStart(2,'0')}`;
-                dates.push({ full: iso, short: ddmm, dateObj: cur });
+                
+                // Usar fecha local exacta para evitar saltos por diferencia UTC
+                const yyyy = cur.getFullYear();
+                const mm = String(cur.getMonth() + 1).padStart(2, '0');
+                const dd = String(cur.getDate()).padStart(2, '0');
+                const localISO = `${yyyy}-${mm}-${dd}`;
+                
+                const ddmm = `${dd}/${mm}`;
+                dates.push({ full: localISO, short: ddmm, dateObj: cur });
             }
             return dates;
         }
@@ -1337,10 +1415,7 @@
             if (tipo === 'HORAS') {
                 nuevaEntrada = document.getElementById('edit-entrada').value;
                 nuevaSalida = document.getElementById('edit-salida').value;
-                if(!nuevaEntrada || !nuevaSalida) {
-                    await customAlert("Debes indicar hora de entrada y salida.");
-                    return;
-                }
+                if(!nuevaEntrada || !nuevaSalida) return alert("Debes indicar hora de entrada y salida.");
                 total = calcularTotalHoras(nuevaEntrada, nuevaSalida);
             } else {
                 nuevaEntrada = tipo;
@@ -1369,7 +1444,7 @@
                 }
                 cerrarModalEdicion();
             } catch(e) {
-                await customAlert("Error al actualizar el registro.");
+                alert("Error al actualizar el registro.");
             }
         };
 
@@ -1377,12 +1452,12 @@
             const id = document.getElementById('edit-id').value;
             if(!id) return;
             if(!currentUser) return;
-            if(await customConfirm('¿Seguro que quieres eliminar este fichaje permanentemente?')) {
+            if(confirm('¿Seguro que quieres eliminar este fichaje permanentemente?')) {
                 try {
                     await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'fichajes', id));
                     cerrarModalEdicion();
                 } catch(e) {
-                    await customAlert("Error al eliminar el registro.");
+                    alert("Error al eliminar el registro.");
                 }
             }
         };
@@ -1474,11 +1549,27 @@
 
         function iniciarPanelAdmin() {
             navigateTo('admin-panel');
-            suscribirRegistrosFirebase();
+            if (currentUser && !unsubscribeSnapshot) {
+                unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
+                    registrosGlobales = [];
+                    snapshot.forEach((doc) => registrosGlobales.push({ id: doc.id, ...doc.data() }));
+                    
+                    registrosGlobales.sort((a, b) => {
+                        if (a.fecha !== b.fecha) return new Date(b.fecha) - new Date(a.fecha);
+                        return new Date(b.timestamp) - new Date(a.timestamp);
+                    });
+                    
+                    generarCuadranteHTML();
+                    actualizarPreviewExport();
+                    if (WORKER_LOGGED_IN) generarCalendarioWorker(); // Actualiza si está en mis horas
+                }, (error) => {
+                    console.error(error);
+                });
+            }
         }
 
         window.cerrarSesionAdmin = function() {
-            if (unsubscribeSnapshot) {
+            if (unsubscribeSnapshot && !WORKER_LOGGED_IN) {
                 unsubscribeSnapshot();
                 unsubscribeSnapshot = null;
             }
@@ -1521,10 +1612,7 @@
             const newOp = document.getElementById('inputNewPinOp').value;
             const newAdm = document.getElementById('inputNewPinAdmin').value;
             
-            if(!newOp || !newAdm) {
-                await customAlert("Los PINs no pueden estar vacíos.");
-                return;
-            }
+            if(!newOp || !newAdm) return alert("Los PINs no pueden estar vacíos.");
             
             PIN_OPERARIAS[worker] = newOp;
             PIN_ADMIN = newAdm;
@@ -1536,11 +1624,10 @@
                 msg.classList.remove('hidden');
                 setTimeout(() => msg.classList.add('hidden'), 3000);
             } catch(e) {
-                await customAlert("Error al actualizar PINs en la base de datos.");
+                alert("Error al actualizar PINs en la base de datos.");
             }
         };
 
-        // --- GESTIÓN DE PERSONAL Y AJUSTES ---
         window.renderizarAjustesTab = function() {
             const lw = document.getElementById('list-workers');
             lw.innerHTML = '';
@@ -1573,10 +1660,7 @@
         window.agregarTrabajadora = async function() {
             const nombre = document.getElementById('new-worker-input').value.trim();
             if(!nombre) return;
-            if(NOMBRES.includes(nombre)) {
-                await customAlert("Esta trabajadora ya existe.");
-                return;
-            }
+            if(NOMBRES.includes(nombre)) return alert("Esta trabajadora ya existe.");
             
             NOMBRES.push(nombre);
             PIN_OPERARIAS[nombre] = "1234";
@@ -1589,13 +1673,10 @@
         };
 
         window.renombrarTrabajadora = async function(oldName) {
-            const newName = await customPrompt("Introduce el nuevo nombre para " + oldName + ":", oldName);
+            const newName = prompt("Introduce el nuevo nombre para " + oldName + ":", oldName);
             if(!newName || newName.trim() === "" || newName === oldName) return;
             const finalName = newName.trim();
-            if(NOMBRES.includes(finalName)) {
-                await customAlert("Ese nombre ya existe.");
-                return;
-            }
+            if(NOMBRES.includes(finalName)) return alert("Ese nombre ya existe.");
 
             const idx = NOMBRES.indexOf(oldName);
             if(idx > -1) NOMBRES[idx] = finalName;
@@ -1616,7 +1697,7 @@
         };
 
         window.eliminarTrabajadora = async function(nombre) {
-            if(!(await customConfirm("¿Borrar a " + nombre + " de la plantilla?\n\n(No te preocupes, si tiene horas fichadas en el pasado, su fila seguirá apareciendo en su respectiva semana del cuadrante)."))) return;
+            if(!confirm("¿Borrar a " + nombre + " de la plantilla?\n\n(No te preocupes, si tiene horas fichadas en el pasado, su fila seguirá apareciendo en su respectiva semana del cuadrante).")) return;
             
             NOMBRES = NOMBRES.filter(n => n !== nombre);
             delete PIN_OPERARIAS[nombre];
@@ -1630,10 +1711,7 @@
         window.agregarTipoRegistro = async function() {
             const tipo = document.getElementById('new-type-input').value.trim().toUpperCase();
             if(!tipo) return;
-            if(specialStatuses.includes(tipo)) {
-                await customAlert("Este tipo ya existe.");
-                return;
-            }
+            if(specialStatuses.includes(tipo)) return alert("Este tipo ya existe.");
             
             customTipos.push(tipo);
             specialStatuses.push(tipo);
@@ -1645,7 +1723,7 @@
         };
 
         window.eliminarTipoRegistro = async function(tipo) {
-            if(!(await customConfirm("¿Borrar el tipo de registro '" + tipo + "'?"))) return;
+            if(!confirm("¿Borrar el tipo de registro '" + tipo + "'?")) return;
             customTipos = customTipos.filter(t => t !== tipo);
             specialStatuses = [...TIPOS_DEFECTO, ...customTipos];
             await guardarConfiguracionGlobal();
@@ -1654,7 +1732,7 @@
             renderizarAjustesTab();
         };
 
-        // --- LÓGICA DE EXPORTACIÓN (EXCEL Y PDF) MODIFICADA ---
+        // --- LÓGICA DE EXPORTACIÓN (EXCEL Y PDF) MODIFICADA AVANZADA ---
         function filtrarRegistrosParaExportar(checkWeek = false) {
             const worker = document.getElementById('exportWorker').value;
             const monthVal = document.getElementById('exportMonth').value;
@@ -1714,45 +1792,41 @@
             });
         }
 
-        window.generarExcelPersonalizado = async function() {
+        window.generarExcelPersonalizado = function() {
             const data = filtrarRegistrosParaExportar(true);
-            if (data.length === 0) {
-                await customAlert("No hay datos para exportar con estos filtros.");
-                return;
-            }
+            if (data.length === 0) return alert("No hay datos para exportar con estos filtros.");
             
             const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-            // Función auxiliar para calcular el número de semana ISO
-            const getWeek = (dateStr) => {
-                const date = new Date(dateStr);
-                date.setHours(0, 0, 0, 0);
-                date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-                const week1 = new Date(date.getFullYear(), 0, 4);
-                return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-            };
-            
-            // Usamos punto y coma (;) para que Excel en España separe las columnas automáticamente
-            let csvContent = "Operaria;Año;Mes;Semana;Día de la Semana;Fecha;Tipo de Registro;Entrada;Salida;Total Horas\n";
+            // Añadimos las nuevas cabeceras detalladas
+            // Separador por defecto en España para Excel: punto y coma (;)
+            let csvContent = "Operaria;Año;Mes;Semana;Dia;Fecha;Tipo;Entrada;Salida;Total Horas\n";
             
             data.forEach(reg => {
                 const especial = specialStatuses.includes(reg.horaEntrada);
-                const [y, m, d] = reg.fecha.split('-');
                 
-                const mesNombre = mesesNombres[parseInt(m) - 1];
-                const numSemana = getWeek(reg.fecha);
-                const tipoRegistro = especial ? reg.horaEntrada : "HORAS NORMALES";
-                
+                // Mapeo de valores
+                const tipoReg = especial ? reg.horaEntrada : "Horas Normales";
                 const expEntrada = especial ? '-' : reg.horaEntrada;
                 const expSalida = especial ? '-' : reg.horaSalida;
                 
-                // Si hay horas, cambiamos el punto por coma para que Excel lo detecte como número decimal (ej. 7,5 en lugar de 7.5)
+                // Formatear decimales a coma para Excel ES (ej: 7.5 -> 7,5)
                 const expTotal = especial ? '0' : String(reg.totalHoras).replace('.', ',');
+                
+                const [y, m, d] = reg.fecha.split('-');
+                const monthText = mesesNombres[parseInt(m) - 1];
+                
+                // Calcular número de semana para esa fecha concreta
+                const dateObj = new Date(y, parseInt(m)-1, d);
+                const firstDayOfYear = new Date(dateObj.getFullYear(), 0, 1);
+                const pastDaysOfYear = (dateObj - firstDayOfYear) / 86400000;
+                const weekNum = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
 
-                csvContent += `"${reg.operaria}";"${y}";"${mesNombre}";"Semana ${numSemana}";"${reg.diaSemana}";"${d}/${m}/${y}";"${tipoRegistro}";"${expEntrada}";"${expSalida}";"${expTotal}"\n`;
+                // Construcción de la fila usando punto y coma
+                csvContent += `"${reg.operaria}";"${y}";"${monthText}";"Semana ${weekNum}";"${reg.diaSemana}";"${d}/${m}/${y}";"${tipoReg}";"${expEntrada}";"${expSalida}";"${expTotal}"\n`;
             });
-
-            // \uFEFF es el BOM (Byte Order Mark) que fuerza a Excel a leer UTF-8 (para que los acentos salgan bien)
+            
+            // BOM para forzar UTF-8 en Excel
             const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
@@ -1762,21 +1836,15 @@
             document.body.removeChild(link);
         };
 
-        window.generarPDFPersonalizado = async function() {
+        window.generarPDFPersonalizado = function() {
             const workerSelected = document.getElementById('exportWorker').value;
             const monthVal = document.getElementById('exportMonth').value;
             const weekVal = document.getElementById('exportWeek').value;
 
-            if(!monthVal && !weekVal) {
-                await customAlert("Por favor, selecciona un Mes o una Semana para generar el PDF.");
-                return;
-            }
+            if(!monthVal && !weekVal) return alert("Por favor, selecciona un Mes o una Semana para generar el PDF.");
 
             const dataCompleta = filtrarRegistrosParaExportar(true);
-            if (dataCompleta.length === 0) {
-                await customAlert("No hay datos para exportar con estos filtros.");
-                return;
-            }
+            if (dataCompleta.length === 0) return alert("No hay datos para exportar con estos filtros.");
             
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -1914,6 +1982,7 @@
             }
         };
 
+        // --- LÓGICA DEL POPUP DE INSTALACIÓN PARA iOS ---
         function checkIOSPrompt() {
             const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
             const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
@@ -1922,146 +1991,6 @@
             }
         }
         setTimeout(checkIOSPrompt, 1000);
-
-        // --- LÓGICA DE MIS HORAS (CALENDARIO TRABAJADORA) ---
-        window.iniciarWorkerAuth = function(e) {
-            e.preventDefault();
-            const worker = document.getElementById('workerAuthSelect').value;
-            const pin = document.getElementById('workerAuthPin').value;
-            const errorEl = document.getElementById('errorWorkerAuth');
-
-            if (worker && PIN_OPERARIAS[worker] === pin) {
-                errorEl.classList.add('hidden');
-                document.getElementById('workerAuthPin').value = '';
-                currentCalendarWorker = worker;
-                
-                // Mes actual por defecto
-                const today = new Date();
-                document.getElementById('workerCalendarMonth').value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
-                
-                document.getElementById('calendar-worker-name').textContent = worker;
-                navigateTo('worker-calendar');
-                suscribirRegistrosFirebase();
-                
-                // Se renderiza con setTimeout para dar tiempo a que carguen los registros locales si ya los hay
-                setTimeout(renderWorkerCalendar, 100); 
-            } else {
-                errorEl.classList.remove('hidden');
-                setTimeout(() => errorEl.classList.add('hidden'), 3000);
-            }
-        }
-
-        window.renderWorkerCalendar = function() {
-            const monthInput = document.getElementById('workerCalendarMonth').value;
-            if(!monthInput || !currentCalendarWorker) return;
-
-            const [year, month] = monthInput.split('-');
-            const daysInMonth = new Date(year, month, 0).getDate();
-            const firstDayDate = new Date(year, month - 1, 1);
-            let firstDayIndex = firstDayDate.getDay() - 1; 
-            if(firstDayIndex === -1) firstDayIndex = 6; 
-
-            let html = '';
-            const dayNames = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-            dayNames.forEach(d => html += `<div class="text-center text-xs font-black text-slate-400 py-3 bg-slate-900/90 rounded-lg">${d}</div>`);
-
-            // Rellenar días en blanco antes de que empiece el mes
-            for(let i = 0; i < firstDayIndex; i++) {
-                html += `<div class="p-2"></div>`;
-            }
-
-            let totalHorasMes = 0;
-            let diasTrabajados = 0;
-
-            for(let d = 1; d <= daysInMonth; d++) {
-                const dateStr = `${year}-${month}-${String(d).padStart(2,'0')}`;
-                const shifts = registrosGlobales.filter(r => r.operaria === currentCalendarWorker && r.fecha === dateStr);
-
-                const isToday = (dateStr === new Date().toISOString().split('T')[0]);
-                let ringClass = isToday ? 'ring-2 ring-emerald-500 ring-offset-2 ring-offset-slate-950' : '';
-
-                if(shifts.length > 0) {
-                    diasTrabajados++;
-                    let dayHtml = `<div onclick="abrirDetalleDiaTrabajador('${dateStr}')" class="cursor-pointer relative min-h-[60px] sm:min-h-[80px] p-1.5 sm:p-2 rounded-xl border border-slate-700/50 bg-slate-800/60 hover:bg-slate-700/80 transition-all group flex flex-col items-center justify-start shadow-sm hover:shadow-md hover:scale-105 ${ringClass}">
-                        <span class="text-sm font-bold text-slate-200 group-hover:text-white mb-1">${d}</span>`;
-                    
-                    shifts.forEach(shift => {
-                        const isSpecial = specialStatuses.includes(shift.horaEntrada);
-                        if(isSpecial) {
-                            let dotColor = "bg-purple-500";
-                            if(shift.horaEntrada === 'BAJA') dotColor = "bg-red-500";
-                            if(shift.horaEntrada === 'FIESTA') dotColor = "bg-orange-500";
-                            if(shift.horaEntrada === 'PERSONAL') dotColor = "bg-blue-500";
-                            dayHtml += `<div class="w-full text-center mt-1"><span class="inline-block w-2.5 h-2.5 rounded-full ${dotColor} shadow-[0_0_8px_rgba(0,0,0,0.8)]" title="${shift.horaEntrada}"></span></div>`;
-                        } else {
-                            totalHorasMes += Number(shift.totalHoras);
-                            dayHtml += `<div class="bg-emerald-900/80 border border-emerald-700/50 rounded flex items-center justify-center w-full py-0.5 px-1 mt-1 shadow-sm">
-                                <span class="text-[10px] sm:text-xs font-black text-emerald-300">${shift.totalHoras}h</span>
-                            </div>`;
-                        }
-                    });
-                    dayHtml += `</div>`;
-                    html += dayHtml;
-                } else {
-                    html += `<div class="min-h-[60px] sm:min-h-[80px] p-2 rounded-xl border border-transparent flex flex-col items-center justify-start opacity-40 ${ringClass}">
-                        <span class="text-sm font-medium text-slate-500">${d}</span>
-                    </div>`;
-                }
-            }
-
-            document.getElementById('worker-calendar-grid').innerHTML = html;
-            document.getElementById('worker-tot-dias').textContent = diasTrabajados;
-        }
-
-        window.abrirDetalleDiaTrabajador = function(dateStr) {
-            const shifts = registrosGlobales.filter(r => r.operaria === currentCalendarWorker && r.fecha === dateStr);
-            if(shifts.length === 0) return;
-
-            const [y, m, d] = dateStr.split('-');
-            document.getElementById('detalle-dia-fecha').textContent = `${d}/${m}/${y}`;
-            
-            let html = '';
-            shifts.forEach(shift => {
-                const isSpecial = specialStatuses.includes(shift.horaEntrada);
-                if(isSpecial) {
-                    html += `<div class="bg-slate-800/80 border border-slate-700/50 p-5 rounded-xl text-center shadow-inner">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Motivo / Tipo</span>
-                        <span class="text-xl font-black text-blue-400">${shift.horaEntrada}</span>
-                    </div>`;
-                } else {
-                    html += `<div class="bg-slate-800/80 border border-slate-700/50 p-5 rounded-xl flex justify-between items-center shadow-inner">
-                        <div class="text-center flex-1">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Entrada</span>
-                            <span class="text-xl font-black text-white">${shift.horaEntrada}</span>
-                        </div>
-                        <div class="h-10 w-px bg-slate-700/50 mx-2"></div>
-                        <div class="text-center flex-1">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Salida</span>
-                            <span class="text-xl font-black text-white">${shift.horaSalida}</span>
-                        </div>
-                        <div class="h-10 w-px bg-slate-700/50 mx-2"></div>
-                        <div class="text-center flex-1">
-                            <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider block mb-1">Total</span>
-                            <span class="text-xl font-black text-emerald-400">${shift.totalHoras}h</span>
-                        </div>
-                    </div>`;
-                }
-            });
-
-            document.getElementById('detalle-dia-contenido').innerHTML = html;
-            document.getElementById('modalDetalleDia').classList.remove('hidden');
-            document.getElementById('modalDetalleDia').classList.add('flex');
-        }
-
-        window.cerrarModalDetalleDia = function() {
-            document.getElementById('modalDetalleDia').classList.add('hidden');
-            document.getElementById('modalDetalleDia').classList.remove('flex');
-        }
-
-        const elCalendarMonth = document.getElementById('workerCalendarMonth');
-        if(elCalendarMonth) {
-            elCalendarMonth.addEventListener('change', renderWorkerCalendar);
-        }
 
         lucide.createIcons();
     </script>

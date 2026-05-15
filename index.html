@@ -828,6 +828,13 @@
                 document.getElementById('workerLoginForm').reset();
                 document.getElementById('errorWorkerLogin').classList.add('hidden');
                 window.cerrarModalConfirmacion();
+                
+                // Limpiar la sesión de la trabajadora y la sincronización al volver a inicio
+                WORKER_LOGGED_IN = null;
+                if (unsubscribeSnapshot) {
+                    unsubscribeSnapshot();
+                    unsubscribeSnapshot = null;
+                }
             }
         };
 
@@ -1057,7 +1064,7 @@
         function iniciarPanelWorker() {
             navigateTo('worker-panel');
             document.getElementById('worker-panel-name').textContent = WORKER_LOGGED_IN;
-            generarCalendarioWorker();
+            iniciarSincronizacionGlobal(); // <- AHORA SINCRONIZA LOS DATOS DESDE FIREBASE
         }
 
         document.getElementById('workerCalendarMonth').addEventListener('change', generarCalendarioWorker);
@@ -1584,8 +1591,8 @@
             generarCuadranteHTML();
         };
 
-        function iniciarPanelAdmin() {
-            navigateTo('admin-panel');
+        // FUNCIÓN GLOBAL DE SINCRONIZACIÓN (Para Admin y Trabajadoras)
+        function iniciarSincronizacionGlobal() {
             if (currentUser && !unsubscribeSnapshot) {
                 unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
                     registrosGlobales = [];
@@ -1596,20 +1603,29 @@
                         return new Date(b.timestamp) - new Date(a.timestamp);
                     });
                     
-                    generarCuadranteHTML();
-                    actualizarPreviewExport();
-                    if (WORKER_LOGGED_IN) generarCalendarioWorker(); // Actualiza si está en mis horas
+                    if (document.getElementById('view-admin-panel').classList.contains('active')) {
+                        generarCuadranteHTML();
+                        actualizarPreviewExport();
+                    }
+                    if (WORKER_LOGGED_IN) {
+                        generarCalendarioWorker();
+                    }
                 }, (error) => {
-                    console.error(error);
+                    console.error("Error obteniendo fichajes:", error);
                 });
+            } else if (unsubscribeSnapshot) {
+                // Si ya estamos escuchando, forzamos la actualización visual
+                if (document.getElementById('view-admin-panel').classList.contains('active')) generarCuadranteHTML();
+                if (WORKER_LOGGED_IN) generarCalendarioWorker();
             }
         }
 
+        function iniciarPanelAdmin() {
+            navigateTo('admin-panel');
+            iniciarSincronizacionGlobal();
+        }
+
         window.cerrarSesionAdmin = function() {
-            if (unsubscribeSnapshot && !WORKER_LOGGED_IN) {
-                unsubscribeSnapshot();
-                unsubscribeSnapshot = null;
-            }
             navigateTo('home');
         };
 

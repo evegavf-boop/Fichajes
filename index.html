@@ -156,26 +156,37 @@
                 <p class="text-slate-200 font-medium text-lg drop-shadow-sm">Selecciona una opción para continuar</p>
             </div>
             
-            <div class="space-y-6">
+            <div class="space-y-4">
                 <!-- Botón Fichar -->
-                <button onclick="navigateTo('fichar')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all transform hover:-translate-y-1">
+                <button onclick="navigateTo('fichar')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-emerald-500/70 transition-all transform hover:-translate-y-1">
                     <div class="bg-emerald-900/50 p-5 rounded-2xl text-emerald-400 mr-6 group-hover:scale-110 transition-transform shadow-inner border border-emerald-800/50 shrink-0">
-                        <i data-lucide="clock" class="w-10 h-10"></i>
+                        <i data-lucide="clock" class="w-8 h-8 sm:w-10 sm:h-10"></i>
                     </div>
                     <div class="text-left">
-                        <h3 class="text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">FICHAR</h3>
-                        <p class="text-slate-300 font-medium text-sm">Anotar entrada y salida diaria</p>
+                        <h3 class="text-xl sm:text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">FICHAR</h3>
+                        <p class="text-slate-300 font-medium text-xs sm:text-sm">Anotar entrada y salida diaria</p>
                     </div>
                 </button>
 
                 <!-- Botón Mis Horas -->
-                <button onclick="navigateTo('worker-login')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-[2rem] shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-blue-500/70 transition-all transform hover:-translate-y-1">
+                <button onclick="navigateTo('worker-login')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-blue-500/70 transition-all transform hover:-translate-y-1">
                     <div class="bg-blue-900/50 p-5 rounded-2xl text-blue-400 mr-6 group-hover:scale-110 transition-transform shadow-inner border border-blue-800/50 shrink-0">
-                        <i data-lucide="calendar-days" class="w-10 h-10"></i>
+                        <i data-lucide="calendar-days" class="w-8 h-8 sm:w-10 sm:h-10"></i>
                     </div>
                     <div class="text-left">
-                        <h3 class="text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">MIS HORAS</h3>
-                        <p class="text-slate-300 font-medium text-sm">Consultar mi calendario y turnos</p>
+                        <h3 class="text-xl sm:text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">MIS HORAS</h3>
+                        <p class="text-slate-300 font-medium text-xs sm:text-sm">Consultar mi calendario y turnos</p>
+                    </div>
+                </button>
+                
+                <!-- Botón Calendario 2026 -->
+                <button onclick="navigateTo('calendar-login')" class="w-full group relative flex items-center p-6 bg-slate-900/60 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl border border-slate-700/50 hover:border-orange-500/70 transition-all transform hover:-translate-y-1">
+                    <div class="bg-orange-900/50 p-5 rounded-2xl text-orange-400 mr-6 group-hover:scale-110 transition-transform shadow-inner border border-orange-800/50 shrink-0">
+                        <i data-lucide="calendar-range" class="w-8 h-8 sm:w-10 sm:h-10"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-xl sm:text-2xl font-black text-white mb-1 tracking-wide uppercase drop-shadow-md">CALENDARIO</h3>
+                        <p class="text-slate-300 font-medium text-xs sm:text-sm">Festivos y vacaciones del año</p>
                     </div>
                 </button>
             </div>
@@ -375,6 +386,88 @@
                         <div class="text-center font-bold text-xs sm:text-sm text-slate-400 py-2">Dom</div>
                         <!-- Autocompletado JS -->
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2D: Calendario 2026 (Login) -->
+        <div id="view-calendar-login" class="view-section max-w-md mx-auto">
+            <div class="mb-6 flex items-center">
+                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-200 hover:text-orange-400 transition-colors bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm border border-slate-700/40">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al inicio
+                </button>
+            </div>
+            
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-6 sm:p-8 transition-colors min-h-[300px] flex flex-col justify-center">
+                <form id="calLoginForm" class="w-full space-y-6 animate-fade-in">
+                    <div class="text-center mb-2">
+                        <div class="bg-orange-900/50 border border-orange-800/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-400 shadow-inner">
+                            <i data-lucide="calendar-range" class="w-8 h-8"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-white drop-shadow-md">Calendario Anual</h2>
+                        <p class="text-sm text-slate-300 mt-1">Identifícate para ver o marcar días</p>
+                    </div>
+
+                    <div class="space-y-4 max-w-sm mx-auto">
+                        <select id="calLoginSelect" required class="w-full py-3 bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-orange-500/50 text-white transition-colors appearance-none font-bold text-lg cursor-pointer shadow-inner backdrop-blur-sm">
+                            <option value="" disabled selected>Selecciona tu usuario...</option>
+                        </select>
+
+                        <div class="relative">
+                            <input type="tel" style="-webkit-text-security: disc;" inputmode="numeric" id="calLoginPin" required placeholder="PIN" class="w-full py-3 text-center bg-slate-900/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-orange-500/50 text-white transition-colors font-black text-xl tracking-[0.5em] shadow-inner backdrop-blur-sm">
+                        </div>
+                    </div>
+                    
+                    <div id="errorCalLogin" class="hidden text-center p-3 bg-red-900/50 backdrop-blur-sm text-red-300 rounded-xl border border-red-800/50 text-sm font-bold max-w-xs mx-auto">
+                        <i data-lucide="alert-circle" class="w-4 h-4 inline-block mr-1 relative -top-0.5"></i> PIN incorrecto
+                    </div>
+
+                    <button type="submit" class="w-full max-w-xs mx-auto block flex items-center justify-center gap-2 bg-orange-600/90 hover:bg-orange-500 backdrop-blur-sm text-white font-black py-4 px-6 rounded-xl transition-all text-lg shadow-lg mt-6 active:scale-[0.98] border border-orange-500/50">
+                        <i data-lucide="log-in" class="w-5 h-5"></i>
+                        ACCEDER
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2E: Calendario 2026 (Main View) -->
+        <div id="view-calendar-main" class="view-section">
+            <div class="mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button onclick="navigateTo('home')" class="flex items-center gap-2 text-sm font-medium text-slate-200 hover:text-orange-400 transition-colors bg-slate-900/60 backdrop-blur-md px-3 py-2 rounded-lg shadow-sm border border-slate-700/40 w-full sm:w-auto justify-center">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Volver al inicio
+                </button>
+
+                <div class="flex items-center gap-3 bg-slate-900/60 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-700/40 w-full sm:w-auto justify-center">
+                    <div class="bg-orange-900/50 p-1.5 rounded-lg text-orange-400 border border-orange-800/50">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <span id="cal-panel-name" class="font-black text-white text-lg tracking-wide uppercase">Nombre</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/40 p-5 sm:p-8 transition-colors mx-auto animate-fade-in">
+                
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-slate-700/50 pb-6">
+                    <div>
+                        <h3 class="text-3xl font-black text-white drop-shadow-md">Año 2026</h3>
+                        <p class="text-sm text-slate-400 mt-1">Festivos y planificación de vacaciones</p>
+                    </div>
+                    
+                    <div class="flex gap-4 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 rounded-full bg-red-500 border border-red-400"></div>
+                            <span class="text-xs font-bold text-slate-300">Festivo</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 rounded-full bg-teal-500 border border-teal-300"></div>
+                            <span class="text-xs font-bold text-slate-300">Vacaciones</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de los 12 meses -->
+                <div id="calendario-2026-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Se rellena por JS -->
                 </div>
             </div>
         </div>
@@ -652,7 +745,7 @@
                                 <h4 class="text-lg font-bold text-white flex items-center gap-2 mb-2">
                                     <i data-lucide="tags" class="w-5 h-5 text-purple-400"></i> Tipos de Registro
                                 </h4>
-                                <p class="text-xs text-slate-400 mb-4">Crea motivos personalizados para cuando no trabajan horas normales (Ej: Permiso, Vacaciones).</p>
+                                <p class="text-xs text-slate-400 mb-4">Crea motivos personalizados para cuando no trabajan horas normales.</p>
                                 
                                 <div class="flex gap-2 mb-4">
                                     <input type="text" id="new-type-input" placeholder="Nuevo motivo..." class="flex-1 py-2.5 px-4 bg-slate-900 border border-slate-700 rounded-xl focus:ring-2 focus:ring-purple-500 text-white text-sm font-bold shadow-inner uppercase">
@@ -677,7 +770,7 @@
 
     </div>
 
-    <!-- VENTANA MODAL DE CONFIRMACIÓN (PARA OPERARIAS) -->
+    <!-- VENTANAS MODALES GENERALES -->
     <div id="modalConfirmacion" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
             <div class="absolute top-0 left-0 right-0 h-1 bg-emerald-500"></div>
@@ -716,7 +809,6 @@
         </div>
     </div>
 
-    <!-- VENTANA MODAL DE DETALLE DÍA (OPERARIA MIS HORAS) -->
     <div id="modalDetalleDia" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
             <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
@@ -741,25 +833,53 @@
         </div>
     </div>
 
-    <!-- VENTANA MODAL DE CONFIRMACIÓN CAMBIO DE PIN -->
-    <div id="modalConfirmacionPin" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <!-- MODAL CALENDARIO ANUAL -->
+    <div id="modalCalendarAction" class="hidden fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
             <div class="absolute top-0 left-0 right-0 h-1 bg-orange-500"></div>
             
+            <input type="hidden" id="cal-selected-date">
+            
             <div class="text-center mb-6">
                 <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-400 border border-slate-700/50 shadow-inner">
-                    <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                    <i data-lucide="calendar-cog" class="w-8 h-8"></i>
                 </div>
-                <h3 class="text-2xl font-black text-white">¿Guardar cambios?</h3>
-                <p class="text-sm text-slate-400 mt-1">Estás a punto de actualizar la seguridad.</p>
+                <h3 class="text-2xl font-black text-white">Gestionar Día</h3>
+                <p id="cal-modal-fecha" class="text-sm text-orange-400 font-bold mt-1 uppercase tracking-wider"></p>
             </div>
             
-            <div class="flex gap-3 mt-8">
-                <button type="button" onclick="cerrarModalConfirmacionPin()" class="flex-1 py-3.5 px-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700/50 text-white rounded-xl font-bold transition-all text-sm shadow-md">
-                    Cancelar
+            <div class="bg-slate-950/60 rounded-2xl p-5 mb-6 border border-slate-800/60 shadow-inner space-y-3">
+                
+                <!-- Opciones si es ADMIN -->
+                <div id="admin-cal-options" class="hidden space-y-4">
+                    <label class="flex items-center gap-3 cursor-pointer p-2 rounded hover:bg-slate-800/50 transition-colors">
+                        <input type="checkbox" id="cal-festivo-check" class="w-5 h-5 accent-red-500 cursor-pointer">
+                        <span class="text-white font-bold">Marcar como Día Festivo</span>
+                    </label>
+                    <div class="pt-3 border-t border-slate-700/50">
+                        <span class="block text-slate-400 text-sm font-medium mb-1">Personal de vacaciones:</span>
+                        <span id="cal-vacaciones-list" class="font-black text-teal-400 text-sm">Ninguna</span>
+                    </div>
+                </div>
+
+                <!-- Opciones si es CHICA -->
+                <div id="worker-cal-options" class="hidden space-y-4">
+                    <div id="cal-is-festivo-msg" class="hidden bg-red-900/40 border border-red-800 text-red-200 text-center p-2 rounded-lg font-bold text-sm mb-4">
+                        Este día está marcado como Festivo
+                    </div>
+                    <label class="flex items-center gap-3 cursor-pointer p-2 rounded hover:bg-slate-800/50 transition-colors">
+                        <input type="checkbox" id="cal-vacaciones-check" class="w-5 h-5 accent-teal-500 cursor-pointer">
+                        <span class="text-white font-bold">Quiero mis vacaciones este día</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <button type="button" onclick="guardarModalCalendario()" class="w-full py-3.5 bg-orange-600/90 hover:bg-orange-500 border border-orange-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md flex justify-center items-center gap-2">
+                    <i data-lucide="save" class="w-5 h-5"></i> GUARDAR
                 </button>
-                <button type="button" onclick="guardarNuevosPins()" class="flex-[1.5] py-3.5 px-4 bg-orange-600/90 hover:bg-orange-500 border border-orange-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md flex justify-center items-center gap-2">
-                    <i data-lucide="check" class="w-5 h-5"></i> SÍ, CAMBIAR
+                <button type="button" onclick="cerrarModalCalendario()" class="w-full py-3 text-slate-400 hover:text-white font-bold transition-all text-sm">
+                    Cancelar
                 </button>
             </div>
         </div>
@@ -827,13 +947,20 @@
                 document.getElementById('errorPinAdmin').classList.add('hidden');
                 document.getElementById('workerLoginForm').reset();
                 document.getElementById('errorWorkerLogin').classList.add('hidden');
+                document.getElementById('calLoginForm').reset();
+                document.getElementById('errorCalLogin').classList.add('hidden');
                 window.cerrarModalConfirmacion();
                 
                 // Limpiar la sesión de la trabajadora y la sincronización al volver a inicio
                 WORKER_LOGGED_IN = null;
+                CALENDAR_LOGGED_IN = null;
                 if (unsubscribeSnapshot) {
                     unsubscribeSnapshot();
                     unsubscribeSnapshot = null;
+                }
+                if (unsubscribeCalSnapshot) {
+                    unsubscribeCalSnapshot();
+                    unsubscribeCalSnapshot = null;
                 }
             }
         };
@@ -851,15 +978,19 @@
         const modalDetalleDia = document.getElementById('modalDetalleDia');
         
         // Variables globales y de Estado Dinámico
-        const NOMBRES_DEFECTO = ["Sol", "Denise", "Douba", "Valentina", "Mati", "Mariana"];
+        const NOMBRES_DEFECTO = ["Sol", "Denise", "Douba", "Valentina", "Mariana"]; // Mati eliminada
         let NOMBRES = [];
         let PIN_OPERARIAS = {};
         let PIN_ADMIN = "admin123";
-        let WORKER_LOGGED_IN = null; // Para la vista "Mis Horas"
+        let WORKER_LOGGED_IN = null; 
+        let CALENDAR_LOGGED_IN = null; 
         
-        const TIPOS_DEFECTO = ["FIESTA", "ENFERMEDAD", "VACACIONES"];
+        const TIPOS_DEFECTO = ["ENFERMEDAD", "VACACIONES"]; // Fiesta la quitamos porque ahora es festivo visual en el calendario anual
         let customTipos = [];
         let specialStatuses = [];
+        
+        let calendario2026Data = {}; // Guarda datos del calendario anual
+        let unsubscribeCalSnapshot = null;
 
         function actualizarSelectsHTML() {
             const selectsTrabajadoras = ['operaria', 'adminWorkerFilter', 'selectPinWorker', 'exportWorker', 'workerLoginSelect'];
@@ -872,13 +1003,28 @@
                 sel.innerHTML = html;
             });
 
+            // Selector del Calendario Anual (Incluye Admin)
+            const calSel = document.getElementById('calLoginSelect');
+            if(calSel) {
+                let html = '<option value="" disabled selected>Selecciona tu usuario...</option>';
+                html += '<option value="ADMIN" class="font-bold text-orange-400">⭐ Administrador (Festivos)</option>';
+                NOMBRES.forEach(n => html += `<option value="${n}">${n}</option>`);
+                calSel.innerHTML = html;
+            }
+
             const selTipo = document.getElementById('edit-tipo');
             if(selTipo) {
                 let html = `<option value="HORAS">Horas Trabajadas</option>
-                            <option value="FIESTA">Fiesta</option>
                             <option value="ENFERMEDAD">Enfermedad</option>
                             <option value="VACACIONES">Vacaciones</option>`;
-                customTipos.forEach(t => html += `<option value="${t}">${t}</option>`);
+                
+                // Evitar duplicar "Vacaciones" si por error se guardó en customTipos antiguamente
+                const tiposFijos = ["HORAS", "FIESTA", "ENFERMEDAD", "VACACIONES"];
+                customTipos.forEach(t => {
+                    if(!tiposFijos.includes(t)) {
+                        html += `<option value="${t}">${t}</option>`;
+                    }
+                });
                 selTipo.innerHTML = html;
             }
         }
@@ -978,7 +1124,6 @@
             ];
             let opcionesHTML = '';
             
-            // Desde las 07:00 hasta las 23:45
             for(let h = 7; h <= 23; h++) {
                 const horaStr = h.toString().padStart(2, '0');
                 opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option>`;
@@ -986,7 +1131,6 @@
                 opcionesHTML += `<option value="${horaStr}:30">${horaStr}:30</option>`;
                 opcionesHTML += `<option value="${horaStr}:45">${horaStr}:45</option>`;
             }
-            // De 00:00 a 02:00
             for(let h = 0; h <= 2; h++) {
                 const horaStr = h.toString().padStart(2, '0');
                 opcionesHTML += `<option value="${horaStr}:00">${horaStr}:00</option>`;
@@ -996,8 +1140,9 @@
                     opcionesHTML += `<option value="${horaStr}:45">${horaStr}:45</option>`;
                 }
             }
-            
-            selects.forEach(select => select.innerHTML += opcionesHTML);
+            selects.forEach(select => {
+                if(select) select.innerHTML += opcionesHTML;
+            });
         }
         generarHoras();
         document.getElementById('fecha').valueAsDate = new Date();
@@ -1006,14 +1151,11 @@
             let [h1, m1] = inicio.split(':').map(Number);
             let [h2, m2] = fin.split(':').map(Number);
             
-            // Si la hora de salida es 00, 01 o 02 de la madrugada, sumamos 24 horas para el cálculo correcto
             if (h2 >= 0 && h2 <= 2) h2 += 24;
             
             let f1 = new Date(2000, 0, 1, h1, m1);
             let f2 = new Date(2000, 0, 1, h2, m2);
-            
-            if (f2 < f1) f2.setDate(f2.getDate() + 1); // Fallback por si acaso
-            
+            if (f2 < f1) f2.setDate(f2.getDate() + 1);
             return (f2 - f1) / (1000 * 60 * 60);
         }
 
@@ -1064,14 +1206,14 @@
         function iniciarPanelWorker() {
             navigateTo('worker-panel');
             document.getElementById('worker-panel-name').textContent = WORKER_LOGGED_IN;
-            iniciarSincronizacionGlobal(); // <- AHORA SINCRONIZA LOS DATOS DESDE FIREBASE
+            iniciarSincronizacionGlobal();
         }
 
         document.getElementById('workerCalendarMonth').addEventListener('change', generarCalendarioWorker);
 
         function generarCalendarioWorker() {
             if(!WORKER_LOGGED_IN) return;
-            const monthVal = document.getElementById('workerCalendarMonth').value; // YYYY-MM
+            const monthVal = document.getElementById('workerCalendarMonth').value; 
             if(!monthVal) return;
 
             const [yearStr, monthStr] = monthVal.split('-');
@@ -1081,22 +1223,18 @@
             const primerDiaMes = new Date(year, month, 1);
             const ultimoDiaMes = new Date(year, month + 1, 0);
             
-            // Ajustar para que la semana empiece en Lunes (1) en vez de Domingo (0)
             let diaSemanaInicio = primerDiaMes.getDay();
             diaSemanaInicio = diaSemanaInicio === 0 ? 6 : diaSemanaInicio - 1; 
 
             let diasTrabajados = 0;
             let html = '';
 
-            // Huecos vacíos antes del primer día del mes
             for (let i = 0; i < diaSemanaInicio; i++) {
                 html += `<div class="aspect-square rounded-xl bg-slate-900/30 border border-transparent"></div>`;
             }
 
-            // Días del mes
             for (let d = 1; d <= ultimoDiaMes.getDate(); d++) {
                 const dateISO = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                // Buscar si hay registro de esa operaria ese día
                 const turno = registrosGlobales.find(r => r.operaria === WORKER_LOGGED_IN && r.fecha === dateISO);
 
                 if (turno) {
@@ -1177,233 +1315,6 @@
             modalDetalleDia.classList.remove('flex');
         };
 
-        // --- IMPORTACIONES DE FIREBASE ---
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyB9PbJS02DWqrbQYLSC50cNhTWsUL9TwP4",
-            authDomain: "fichajes-9e04f.firebaseapp.com",
-            projectId: "fichajes-9e04f",
-            storageBucket: "fichajes-9e04f.firebasestorage.app",
-            messagingSenderId: "628635461198",
-            appId: "1:628635461198:web:6440bdae98afaa796d851f"
-        };
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-mediterrania-app';
-
-        let currentUser = null;
-        let registrosGlobales = [];
-        let unsubscribeSnapshot = null;
-
-        const getFichajesRef = () => collection(db, 'artifacts', appId, 'public', 'data', 'fichajes');
-        const getSettingsRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'configuracionGeneral');
-
-        async function guardarConfiguracionGlobal() {
-            try {
-                await setDoc(getSettingsRef(), {
-                    trabajadores: NOMBRES,
-                    customTipos: customTipos,
-                    pinOperarias: PIN_OPERARIAS,
-                    pinAdmin: PIN_ADMIN
-                });
-            } catch(e) { console.error("Error guardando settings", e); }
-        }
-
-        async function cargarConfiguracion() {
-            try {
-                const configDoc = await getDoc(getSettingsRef());
-                if (configDoc.exists()) {
-                    const data = configDoc.data();
-                    NOMBRES = data.trabajadores && data.trabajadores.length > 0 ? data.trabajadores : [...NOMBRES_DEFECTO];
-                    customTipos = data.customTipos || [];
-                    PIN_OPERARIAS = data.pinOperarias || {};
-                    NOMBRES.forEach(n => { if(!PIN_OPERARIAS[n]) PIN_OPERARIAS[n] = "1234"; });
-                    PIN_ADMIN = data.pinAdmin || "admin123";
-                } else {
-                    NOMBRES = [...NOMBRES_DEFECTO];
-                    customTipos = [];
-                    NOMBRES.forEach(n => PIN_OPERARIAS[n] = "1234");
-                    PIN_ADMIN = "admin123";
-                    await guardarConfiguracionGlobal();
-                }
-            } catch(e) {
-                console.log("Cargando sin Firebase", e);
-                NOMBRES = [...NOMBRES_DEFECTO];
-                NOMBRES.forEach(n => PIN_OPERARIAS[n] = "1234");
-            }
-            
-            specialStatuses = [...TIPOS_DEFECTO, "BAJA", "PERSONAL", ...customTipos];
-            actualizarSelectsHTML();
-        }
-
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                await cargarConfiguracion();
-            } catch (error) {
-                console.warn("Modo local activo");
-            }
-        }
-
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            lucide.createIcons();
-        });
-
-        initAuth();
-
-        window.ejecutarGuardadoFirebase = async function() {
-            const btnConfirmarFinal = document.getElementById('btnConfirmarFinal');
-            const originalContent = btnConfirmarFinal.innerHTML;
-            btnConfirmarFinal.disabled = true;
-            btnConfirmarFinal.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Guardando...`;
-            
-            const operaria = operariaSelect.value;
-            const fecha = document.getElementById('fecha').value;
-            const horaEntrada = document.getElementById('horaEntrada').value;
-            const horaSalida = document.getElementById('horaSalida').value;
-
-            try {
-                await addDoc(getFichajesRef(), {
-                    operaria: operaria,
-                    fecha: fecha,
-                    diaSemana: obtenerDiaSemana(fecha),
-                    horaEntrada: horaEntrada,
-                    horaSalida: horaSalida,
-                    totalHoras: calcularTotalHoras(horaEntrada, horaSalida),
-                    timestamp: new Date().toISOString()
-                });
-                
-                cerrarModalConfirmacion();
-                step3.classList.add('hidden');
-                userBadge.classList.add('hidden');
-                msgExito.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    navigateTo('home');
-                    btnConfirmarFinal.disabled = false;
-                    btnConfirmarFinal.innerHTML = originalContent;
-                }, 3000);
-            } catch (error) {
-                alert("Error al intentar guardar. Revisa tu conexión a internet.");
-                btnConfirmarFinal.disabled = false;
-                btnConfirmarFinal.innerHTML = originalContent;
-            }
-        };
-
-        // --- GESTIÓN MODO ADMIN ---
-        document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const pin = document.getElementById('pinAdmin').value;
-            const errorPin = document.getElementById('errorPinAdmin');
-
-            if (pin === PIN_ADMIN) {
-                errorPin.classList.add('hidden');
-                document.getElementById('pinAdmin').value = '';
-                iniciarPanelAdmin();
-            } else {
-                errorPin.classList.remove('hidden');
-                setTimeout(() => errorPin.classList.add('hidden'), 3000);
-            }
-        });
-
-        window.switchAdminTab = function(tabId) {
-            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('text-white', 'border-emerald-400', 'bg-emerald-600/90');
-                btn.classList.add('bg-slate-900/80', 'text-slate-300', 'border-transparent');
-            });
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.remove('bg-slate-900/80', 'text-slate-300', 'border-transparent');
-            activeBtn.classList.add('text-white', 'border-emerald-400', 'bg-emerald-600/90');
-            
-            if(tabId === 'tab-cuadrante') generarCuadranteHTML();
-            if(tabId === 'tab-seguridad') {
-                const w = document.getElementById('selectPinWorker').value;
-                document.getElementById('inputNewPinOp').value = PIN_OPERARIAS[w] || '';
-                document.getElementById('inputNewPinAdmin').value = PIN_ADMIN;
-                document.getElementById('inputNewPinOp').style.webkitTextSecurity = 'disc';
-                document.getElementById('iconEyeOp').setAttribute('data-lucide', 'eye');
-                document.getElementById('inputNewPinAdmin').style.webkitTextSecurity = 'disc';
-                document.getElementById('iconEyeAdmin').setAttribute('data-lucide', 'eye');
-                lucide.createIcons();
-            }
-            if(tabId === 'tab-ajustes') {
-                renderizarAjustesTab();
-            }
-        };
-
-        // CORRECCIÓN ZONA HORARIA: Cálculo de Lunes a Domingo forzando fecha local
-        function getLunesDomingo(weekStr) {
-            if(!weekStr) return [];
-            const [year, week] = weekStr.split('-W');
-            const d = new Date(year, 0, 1 + (week - 1) * 7);
-            const day = d.getDay();
-            const start = new Date(d);
-            start.setDate(d.getDate() - day + (day === 0 ? -6 : 1));
-            const dates = [];
-            for(let i=0; i<7; i++) {
-                const cur = new Date(start);
-                cur.setDate(start.getDate() + i);
-                
-                // Usar fecha local exacta para evitar saltos por diferencia UTC
-                const yyyy = cur.getFullYear();
-                const mm = String(cur.getMonth() + 1).padStart(2, '0');
-                const dd = String(cur.getDate()).padStart(2, '0');
-                const localISO = `${yyyy}-${mm}-${dd}`;
-                
-                const ddmm = `${dd}/${mm}`;
-                dates.push({ full: localISO, short: ddmm, dateObj: cur });
-            }
-            return dates;
-        }
-
-        // --- EDICIÓN, AÑADIDO MANUAL Y BORRADO DE FICHAJES EN CUADRANTE ---
-        window.abrirModalEdicion = function(id, operaria, fecha, entrada, salida) {
-            document.getElementById('edit-id').value = id || '';
-            document.getElementById('edit-operaria').value = operaria;
-            document.getElementById('edit-fecha').value = fecha;
-            
-            const [y, m, d] = fecha.split('-');
-            document.getElementById('edit-nombre-fecha').innerHTML = `<span class="text-emerald-400 text-lg">${operaria}</span><br><span class="text-slate-400">${d}/${m}/${y}</span>`;
-            document.getElementById('edit-titulo-modal').textContent = id ? "Editar Registro" : "Añadir Registro";
-            
-            if (specialStatuses.includes(entrada)) {
-                const selectTipo = document.getElementById('edit-tipo');
-                if (!Array.from(selectTipo.options).some(opt => opt.value === entrada)) {
-                    selectTipo.insertAdjacentHTML('beforeend', `<option value="${entrada}">${entrada}</option>`);
-                }
-                selectTipo.value = entrada;
-                document.getElementById('edit-entrada').value = '';
-                document.getElementById('edit-salida').value = '';
-            } else {
-                document.getElementById('edit-tipo').value = 'HORAS';
-                document.getElementById('edit-entrada').value = entrada || '';
-                document.getElementById('edit-salida').value = salida || '';
-            }
-            window.toggleEditTipo();
-            
-            const btnDelete = document.getElementById('btn-borrar-fichaje');
-            if(id) {
-                btnDelete.style.display = 'flex';
-            } else {
-                btnDelete.style.display = 'none';
-            }
-            
-            document.getElementById('modalEditarFichaje').classList.remove('hidden');
-            document.getElementById('modalEditarFichaje').classList.add('flex');
-        };
-
         window.toggleEditTipo = function() {
             const tipo = document.getElementById('edit-tipo').value;
             const container = document.getElementById('edit-time-container');
@@ -1481,117 +1392,237 @@
             }
         };
 
-        function generarCuadranteHTML() {
-            const weekStr = document.getElementById('adminWeekFilter').value;
-            const workerFilter = document.getElementById('adminWorkerFilter').value;
-            
-            if(!weekStr) return;
-            const fechas = getLunesDomingo(weekStr);
-            
-            const mesesStr = ["Ene", "Feb", "Mar", "Abr", "Mayo", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"];
-            const monday = fechas[0].dateObj;
-            const sunday = fechas[6].dateObj;
-            let rangoFiltro = "";
-            if (monday.getMonth() === sunday.getMonth()) {
-                rangoFiltro = `(${monday.getDate()}-${sunday.getDate()} ${mesesStr[monday.getMonth()]})`;
-            } else {
-                rangoFiltro = `(${monday.getDate()} ${mesesStr[monday.getMonth()]} - ${sunday.getDate()} ${mesesStr[sunday.getMonth()]})`;
-            }
-            const labelRango = document.getElementById('label-rango-semana');
-            if (labelRango) labelRango.textContent = rangoFiltro;
+        // --- GESTIÓN CALENDARIO 2026 (NUEVO) ---
+        document.getElementById('calLoginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('calLoginSelect').value;
+            const pin = document.getElementById('calLoginPin').value;
+            const errorElement = document.getElementById('errorCalLogin');
 
-            const diasId = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-            for(let i=0; i<7; i++) {
-                document.getElementById(`h-${diasId[i]}`).textContent = fechas[i].short;
-            }
+            let pinCorrecto = (user === 'ADMIN') ? PIN_ADMIN : PIN_OPERARIAS[user];
 
-            const tbody = document.getElementById('tablaCuadrante');
-            tbody.innerHTML = '';
-
-            let trabsSemana = new Set(NOMBRES);
-            for(let i=0; i<7; i++) {
-               const trs = registrosGlobales.filter(r => r.fecha === fechas[i].full).map(r => r.operaria);
-               trs.forEach(t => trabsSemana.add(t));
-            }
-            let trabajadoresA_Mostrar = workerFilter === 'ALL' ? Array.from(trabsSemana) : [workerFilter];
-
-            trabajadoresA_Mostrar.forEach(trabajadora => {
-                let htmlFila = `<tr class="hover:bg-slate-800/40 border-b border-slate-800">
-                    <td class="p-3 font-black text-white bg-slate-900 sticky left-0 z-10 border-r border-slate-800">${trabajadora}</td>`;
+            if (pin === pinCorrecto) {
+                errorElement.classList.add('hidden');
+                document.getElementById('calLoginPin').value = '';
+                CALENDAR_LOGGED_IN = user;
                 
-                let totalSumaH = 0;
+                navigateTo('calendar-main');
+                const displayName = user === 'ADMIN' ? 'Administrador' : user;
+                document.getElementById('cal-panel-name').textContent = displayName;
+                iniciarSincronizacionGlobal();
+            } else {
+                errorElement.classList.remove('hidden');
+                setTimeout(() => errorElement.classList.add('hidden'), 3000);
+            }
+        });
 
-                for(let i=0; i<7; i++) {
-                    const fechaISO = fechas[i].full;
-                    const turnos = registrosGlobales.filter(r => r.operaria === trabajadora && r.fecha === fechaISO);
-                    
-                    if (turnos.length > 0) {
-                        let celda = `<td class="p-2 border-r border-slate-800/50 min-w-[120px] text-center"><div class="flex flex-col gap-1">`;
-                        turnos.forEach(t => {
-                            if(specialStatuses.includes(t.horaEntrada)) {
-                                let colorClass = "bg-purple-900/40 border-purple-800/50 text-purple-400";
-                                if(t.horaEntrada === 'ENFERMEDAD' || t.horaEntrada === 'BAJA') colorClass = "bg-red-900/40 border-red-800/50 text-red-400";
-                                else if(t.horaEntrada === 'PERSONAL') colorClass = "bg-blue-900/40 border-blue-800/50 text-blue-400";
-                                else if(t.horaEntrada === 'FIESTA') colorClass = "bg-orange-900/40 border-orange-800/50 text-orange-400";
-
-                                celda += `<div onclick="abrirModalEdicion('${t.id}', '${t.operaria}', '${t.fecha}', '${t.horaEntrada}', '${t.horaSalida}')" class="${colorClass} border rounded-lg p-2 shadow-sm cursor-pointer hover:scale-[1.02] transition-all font-black text-xs uppercase tracking-wider">
-                                    ${t.horaEntrada === 'PERSONAL' ? 'D. PERSONAL' : t.horaEntrada}
-                                </div>`;
-                            } else {
-                                celda += `<div onclick="abrirModalEdicion('${t.id}', '${t.operaria}', '${t.fecha}', '${t.horaEntrada}', '${t.horaSalida}')" class="bg-emerald-900/40 border border-emerald-800/50 rounded-lg p-1.5 shadow-sm cursor-pointer hover:bg-emerald-800/80 hover:scale-[1.02] transition-all">
-                                    <div class="text-[11px] font-bold text-slate-200 pointer-events-none">${t.horaEntrada} - ${t.horaSalida}</div>
-                                    <div class="text-xs font-black text-emerald-400 mt-0.5 pointer-events-none">${t.totalHoras} h</div>
-                                </div>`;
-                                totalSumaH += Number(t.totalHoras);
-                            }
-                        });
-                        celda += `</div></td>`;
-                        htmlFila += celda;
-                    } else {
-                        htmlFila += `<td class="p-2 border-r border-slate-800/50 min-w-[120px] text-center h-full">
-                            <div onclick="abrirModalEdicion('', '${trabajadora}', '${fechaISO}', '', '')" class="w-full h-full min-h-[40px] flex items-center justify-center cursor-pointer group rounded-lg transition-colors hover:bg-slate-800/60 border border-transparent hover:border-slate-700 border-dashed">
-                                <span class="text-slate-600 font-medium group-hover:hidden">-</span>
-                                <i data-lucide="plus" class="w-4 h-4 text-emerald-500 hidden group-hover:block opacity-50"></i>
-                            </div>
-                        </td>`;
-                    }
+        function renderizarCalendario2026() {
+            const year = 2026;
+            const container = document.getElementById('calendario-2026-grid');
+            container.innerHTML = '';
+            
+            const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            const diasSemana = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+            
+            let html = '';
+            for(let month=0; month<12; month++) {
+                html += `<div class="bg-slate-900/80 rounded-2xl p-4 border border-slate-700/50 shadow-lg">
+                            <h4 class="text-center font-bold text-white mb-3 text-lg">${meses[month]}</h4>
+                            <div class="grid grid-cols-7 gap-1 text-center">`;
+                
+                // Cabecera Días
+                diasSemana.forEach(d => html += `<div class="text-[10px] font-bold text-slate-400 mb-1">${d}</div>`);
+                
+                const primerDia = new Date(year, month, 1);
+                const ultimoDia = new Date(year, month + 1, 0);
+                
+                let startDay = primerDia.getDay();
+                startDay = startDay === 0 ? 6 : startDay - 1;
+                
+                for(let i=0; i<startDay; i++) {
+                    html += `<div></div>`;
                 }
                 
-                htmlFila += `<td class="p-3 font-black text-emerald-400 text-lg text-center bg-emerald-900/10 border-l border-emerald-900/50">${totalSumaH} <span class="text-xs font-medium">h</span></td></tr>`;
-                tbody.innerHTML += htmlFila;
-            });
-            lucide.createIcons();
+                for(let d=1; d<=ultimoDia.getDate(); d++) {
+                    const dateISO = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                    const data = calendario2026Data[dateISO] || {festivo: false, vacaciones: []};
+                    
+                    let isFestivo = data.festivo;
+                    let hasVacaciones = data.vacaciones && data.vacaciones.length > 0;
+                    let misVac = CALENDAR_LOGGED_IN !== 'ADMIN' && data.vacaciones && data.vacaciones.includes(CALENDAR_LOGGED_IN);
+                    
+                    let bgClass = "hover:bg-slate-700/50 text-slate-300 bg-slate-800/40 border-transparent";
+                    let badgeHTML = '';
+
+                    if (isFestivo) {
+                        bgClass = "bg-red-500/90 text-white shadow-[0_0_8px_rgba(239,68,68,0.4)]";
+                    } else if (CALENDAR_LOGGED_IN === 'ADMIN' && hasVacaciones) {
+                        bgClass = "bg-teal-600/90 text-white shadow-sm";
+                    } else if (misVac) {
+                        bgClass = "bg-teal-500/90 text-white shadow-[0_0_8px_rgba(20,184,166,0.4)]";
+                    }
+                    
+                    // Añadir un puntito de indicación si es festivo pero además hay vacaciones (para no perder la info visual)
+                    if (isFestivo && ((CALENDAR_LOGGED_IN === 'ADMIN' && hasVacaciones) || misVac)) {
+                        badgeHTML = `<div class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-200 shadow-md"></div>`;
+                    }
+
+                    html += `<div onclick="abrirModalCalendario('${dateISO}')" class="relative cursor-pointer aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition-all ${bgClass}">
+                                ${d}
+                                ${badgeHTML}
+                             </div>`;
+                }
+                html += `</div></div>`;
+            }
+            container.innerHTML = html;
         }
 
-        document.getElementById('adminWeekFilter').addEventListener('change', generarCuadranteHTML);
-        document.getElementById('adminWorkerFilter').addEventListener('change', generarCuadranteHTML);
-
-        window.cambiarSemanaAdmin = function(offset) {
-            const weekInput = document.getElementById('adminWeekFilter');
-            if (!weekInput.value) return;
-
-            const fechasActuales = getLunesDomingo(weekInput.value);
-            if(!fechasActuales || fechasActuales.length === 0) return;
+        window.abrirModalCalendario = function(dateStr) {
+            document.getElementById('cal-selected-date').value = dateStr;
+            const data = calendario2026Data[dateStr] || {festivo: false, vacaciones: []};
             
-            const lunesActual = fechasActuales[0].dateObj;
-            lunesActual.setDate(lunesActual.getDate() + (offset * 7));
-
-            const target = new Date(lunesActual.valueOf());
-            const dayNr = (lunesActual.getDay() + 6) % 7; 
-            target.setDate(target.getDate() - dayNr + 3);
-            const firstThursday = target.valueOf();
-            target.setMonth(0, 1);
-            if (target.getDay() !== 4) {
-                target.setMonth(0, 1 + ((4 - target.getDay()) + 7) % 7);
+            const [y, m, d] = dateStr.split('-');
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            const dateObj = new Date(y, m-1, d);
+            
+            document.getElementById('cal-modal-fecha').textContent = `${dias[dateObj.getDay()]}, ${d} de ${mesesNombres[parseInt(m)-1]}`;
+            
+            if(CALENDAR_LOGGED_IN === 'ADMIN') {
+                document.getElementById('admin-cal-options').classList.remove('hidden');
+                document.getElementById('worker-cal-options').classList.add('hidden');
+                document.getElementById('cal-festivo-check').checked = data.festivo;
+                document.getElementById('cal-vacaciones-list').textContent = (data.vacaciones && data.vacaciones.length > 0) ? data.vacaciones.join(', ') : 'Ninguna';
+            } else {
+                document.getElementById('admin-cal-options').classList.add('hidden');
+                document.getElementById('worker-cal-options').classList.remove('hidden');
+                document.getElementById('cal-vacaciones-check').checked = data.vacaciones && data.vacaciones.includes(CALENDAR_LOGGED_IN);
+                
+                if(data.festivo) document.getElementById('cal-is-festivo-msg').classList.remove('hidden');
+                else document.getElementById('cal-is-festivo-msg').classList.add('hidden');
             }
-            const newWeek = 1 + Math.ceil((firstThursday - target) / 604800000);
-            const newYear = target.getFullYear();
-
-            weekInput.value = `${newYear}-W${String(newWeek).padStart(2, '0')}`;
-            generarCuadranteHTML();
+            
+            document.getElementById('modalCalendarAction').classList.remove('hidden');
+            document.getElementById('modalCalendarAction').classList.add('flex');
         };
 
-        // FUNCIÓN GLOBAL DE SINCRONIZACIÓN (Para Admin y Trabajadoras)
+        window.cerrarModalCalendario = function() {
+            document.getElementById('modalCalendarAction').classList.add('hidden');
+            document.getElementById('modalCalendarAction').classList.remove('flex');
+        };
+
+        window.guardarModalCalendario = async function() {
+            const dateStr = document.getElementById('cal-selected-date').value;
+            let data = calendario2026Data[dateStr] || {festivo: false, vacaciones: []};
+            if(!data.vacaciones) data.vacaciones = [];
+            
+            if(CALENDAR_LOGGED_IN === 'ADMIN') {
+                data.festivo = document.getElementById('cal-festivo-check').checked;
+            } else {
+                const checked = document.getElementById('cal-vacaciones-check').checked;
+                if(checked && !data.vacaciones.includes(CALENDAR_LOGGED_IN)) {
+                    data.vacaciones.push(CALENDAR_LOGGED_IN);
+                } else if (!checked && data.vacaciones.includes(CALENDAR_LOGGED_IN)) {
+                    data.vacaciones = data.vacaciones.filter(v => v !== CALENDAR_LOGGED_IN);
+                }
+            }
+            
+            calendario2026Data[dateStr] = data; // Actualización local inmediata
+            cerrarModalCalendario();
+            renderizarCalendario2026(); // Re-renderizar visualmente rápido
+            
+            try {
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'calendario2026'), calendario2026Data);
+            } catch(e) {
+                console.error("Error guardando calendario", e);
+            }
+        };
+
+        // --- IMPORTACIONES DE FIREBASE ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB9PbJS02DWqrbQYLSC50cNhTWsUL9TwP4",
+            authDomain: "fichajes-9e04f.firebaseapp.com",
+            projectId: "fichajes-9e04f",
+            storageBucket: "fichajes-9e04f.firebasestorage.app",
+            messagingSenderId: "628635461198",
+            appId: "1:628635461198:web:6440bdae98afaa796d851f"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-mediterrania-app';
+
+        let currentUser = null;
+        let registrosGlobales = [];
+
+        const getFichajesRef = () => collection(db, 'artifacts', appId, 'public', 'data', 'fichajes');
+        const getSettingsRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'configuracionGeneral');
+
+        async function guardarConfiguracionGlobal() {
+            try {
+                // Limpiar posibles duplicados antes de guardar
+                const tiposUnicos = [...new Set(customTipos)];
+                await setDoc(getSettingsRef(), {
+                    trabajadores: NOMBRES,
+                    customTipos: tiposUnicos,
+                    pinOperarias: PIN_OPERARIAS,
+                    pinAdmin: PIN_ADMIN
+                });
+            } catch(e) { console.error("Error guardando settings", e); }
+        }
+
+        async function cargarConfiguracion() {
+            try {
+                const configDoc = await getDoc(getSettingsRef());
+                if (configDoc.exists()) {
+                    const data = configDoc.data();
+                    NOMBRES = data.trabajadores && data.trabajadores.length > 0 ? data.trabajadores : [...NOMBRES_DEFECTO];
+                    customTipos = data.customTipos || [];
+                    PIN_OPERARIAS = data.pinOperarias || {};
+                    NOMBRES.forEach(n => { if(!PIN_OPERARIAS[n]) PIN_OPERARIAS[n] = "1234"; });
+                    PIN_ADMIN = data.pinAdmin || "admin123";
+                } else {
+                    NOMBRES = [...NOMBRES_DEFECTO];
+                    customTipos = [];
+                    NOMBRES.forEach(n => PIN_OPERARIAS[n] = "1234");
+                    PIN_ADMIN = "admin123";
+                    await guardarConfiguracionGlobal();
+                }
+            } catch(e) {
+                console.log("Cargando sin Firebase", e);
+                NOMBRES = [...NOMBRES_DEFECTO];
+                NOMBRES.forEach(n => PIN_OPERARIAS[n] = "1234");
+            }
+            
+            specialStatuses = [...TIPOS_DEFECTO, "BAJA", "FIESTA", "PERSONAL", ...customTipos];
+            actualizarSelectsHTML();
+        }
+
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                await cargarConfiguracion();
+            } catch (error) {
+                console.warn("Modo local activo");
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            lucide.createIcons();
+        });
+
+        initAuth();
+
+        // FUNCIÓN GLOBAL DE SINCRONIZACIÓN (Para Admin, Trabajadoras y Calendario)
         function iniciarSincronizacionGlobal() {
             if (currentUser && !unsubscribeSnapshot) {
                 unsubscribeSnapshot = onSnapshot(getFichajesRef(), (snapshot) => {
@@ -1614,9 +1645,24 @@
                     console.error("Error obteniendo fichajes:", error);
                 });
             } else if (unsubscribeSnapshot) {
-                // Si ya estamos escuchando, forzamos la actualización visual
                 if (document.getElementById('view-admin-panel').classList.contains('active')) generarCuadranteHTML();
                 if (WORKER_LOGGED_IN) generarCalendarioWorker();
+            }
+
+            // Sincronizar el documento del calendario 2026 de forma independiente
+            if (currentUser && !unsubscribeCalSnapshot) {
+                unsubscribeCalSnapshot = onSnapshot(doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'calendario2026'), (docSnap) => {
+                    if(docSnap.exists()) {
+                        calendario2026Data = docSnap.data();
+                    } else {
+                        calendario2026Data = {};
+                    }
+                    if (document.getElementById('view-calendar-main').classList.contains('active')) {
+                        renderizarCalendario2026();
+                    }
+                });
+            } else if (unsubscribeCalSnapshot) {
+                if (document.getElementById('view-calendar-main').classList.contains('active')) renderizarCalendario2026();
             }
         }
 
@@ -1701,11 +1747,15 @@
                     <span class="text-slate-400 font-bold">${t} <span class="text-xs font-normal ml-2 italic">(Por defecto)</span></span>
                 </li>`;
             });
+            
+            const tiposFijos = ["HORAS", "FIESTA", "ENFERMEDAD", "VACACIONES"];
             customTipos.forEach(t => {
-                lt.innerHTML += `<li class="flex justify-between items-center bg-slate-900/80 border border-slate-700/50 p-3 rounded-xl mt-2 shadow-sm">
-                    <span class="text-white font-bold">${t}</span>
-                    <button onclick="eliminarTipoRegistro('${t}')" class="text-red-400 hover:text-red-300 p-1.5 bg-slate-800 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                </li>`;
+                if(!tiposFijos.includes(t)) {
+                    lt.innerHTML += `<li class="flex justify-between items-center bg-slate-900/80 border border-slate-700/50 p-3 rounded-xl mt-2 shadow-sm">
+                        <span class="text-white font-bold">${t}</span>
+                        <button onclick="eliminarTipoRegistro('${t}')" class="text-red-400 hover:text-red-300 p-1.5 bg-slate-800 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </li>`;
+                }
             });
             lucide.createIcons();
         };
@@ -1778,7 +1828,7 @@
         window.eliminarTipoRegistro = async function(tipo) {
             if(!confirm("¿Borrar el tipo de registro '" + tipo + "'?")) return;
             customTipos = customTipos.filter(t => t !== tipo);
-            specialStatuses = [...TIPOS_DEFECTO, ...customTipos];
+            specialStatuses = [...TIPOS_DEFECTO, "BAJA", "FIESTA", "PERSONAL", ...customTipos];
             await guardarConfiguracionGlobal();
             
             actualizarSelectsHTML();
@@ -1851,35 +1901,28 @@
             
             const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-            // Añadimos las nuevas cabeceras detalladas
-            // Separador por defecto en España para Excel: punto y coma (;)
             let csvContent = "Operaria;Año;Mes;Semana;Dia;Fecha;Tipo;Entrada;Salida;Total Horas\n";
             
             data.forEach(reg => {
                 const especial = specialStatuses.includes(reg.horaEntrada);
                 
-                // Mapeo de valores
                 const tipoReg = especial ? reg.horaEntrada : "Horas Normales";
                 const expEntrada = especial ? '-' : reg.horaEntrada;
                 const expSalida = especial ? '-' : reg.horaSalida;
                 
-                // Formatear decimales a coma para Excel ES (ej: 7.5 -> 7,5)
                 const expTotal = especial ? '0' : String(reg.totalHoras).replace('.', ',');
                 
                 const [y, m, d] = reg.fecha.split('-');
                 const monthText = mesesNombres[parseInt(m) - 1];
                 
-                // Calcular número de semana para esa fecha concreta
                 const dateObj = new Date(y, parseInt(m)-1, d);
                 const firstDayOfYear = new Date(dateObj.getFullYear(), 0, 1);
                 const pastDaysOfYear = (dateObj - firstDayOfYear) / 86400000;
                 const weekNum = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
 
-                // Construcción de la fila usando punto y coma
                 csvContent += `"${reg.operaria}";"${y}";"${monthText}";"Semana ${weekNum}";"${reg.diaSemana}";"${d}/${m}/${y}";"${tipoReg}";"${expEntrada}";"${expSalida}";"${expTotal}"\n`;
             });
             
-            // BOM para forzar UTF-8 en Excel
             const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);

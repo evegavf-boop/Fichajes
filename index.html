@@ -833,6 +833,55 @@
         </div>
     </div>
 
+    <!-- VENTANA MODAL EDICIÓN/AÑADIR MANUAL Y BORRADO DE FICHAJE (ADMIN) -->
+    <div id="modalEditarFichaje" class="hidden fixed inset-0 z-[110] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+            
+            <input type="hidden" id="edit-id">
+            <input type="hidden" id="edit-operaria">
+            <input type="hidden" id="edit-fecha">
+            
+            <div class="text-center mb-6">
+                <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 border border-slate-700/50 shadow-inner">
+                    <i data-lucide="calendar-check" class="w-8 h-8"></i>
+                </div>
+                <h3 id="edit-titulo-modal" class="text-xl font-black text-white">Gestionar Registro</h3>
+                <div id="edit-nombre-fecha" class="text-sm mt-2 leading-relaxed"></div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-xs font-bold text-slate-400 uppercase text-center mb-2">Tipo de Registro</label>
+                <!-- Desplegable dinámico -->
+                <select id="edit-tipo" onchange="toggleEditTipo()" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white font-bold text-center appearance-none shadow-inner">
+                </select>
+            </div>
+            
+            <div id="edit-time-container" class="grid grid-cols-2 gap-4 mb-8">
+                <div class="space-y-2 text-center">
+                    <label class="block text-xs font-bold text-slate-400 uppercase">Entrada</label>
+                    <select id="edit-entrada" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white appearance-none font-black text-xl shadow-inner mx-auto text-center"></select>
+                </div>
+                <div class="space-y-2 text-center">
+                    <label class="block text-xs font-bold text-slate-400 uppercase">Salida</label>
+                    <select id="edit-salida" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white appearance-none font-black text-xl shadow-inner mx-auto text-center"></select>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <button type="button" onclick="guardarEdicionFichaje()" class="w-full py-3.5 bg-emerald-600/90 hover:bg-emerald-500 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md flex justify-center items-center gap-2">
+                    <i data-lucide="save" class="w-4 h-4"></i> GUARDAR CAMBIOS
+                </button>
+                <button type="button" id="btn-borrar-fichaje" onclick="borrarFichajeActivo()" class="w-full py-3.5 bg-red-900/60 hover:bg-red-800 border border-red-800/50 text-red-200 hover:text-white rounded-xl font-bold transition-all text-sm shadow-md flex justify-center items-center gap-2">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> ELIMINAR FICHAJE
+                </button>
+                <button type="button" onclick="cerrarModalEdicion()" class="w-full py-3 text-slate-400 hover:text-white font-bold transition-all text-sm mt-2">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL CALENDARIO ANUAL -->
     <div id="modalCalendarAction" class="hidden fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
@@ -879,55 +928,6 @@
                     <i data-lucide="save" class="w-5 h-5"></i> GUARDAR
                 </button>
                 <button type="button" onclick="cerrarModalCalendario()" class="w-full py-3 text-slate-400 hover:text-white font-bold transition-all text-sm">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- VENTANA MODAL EDICIÓN/AÑADIR MANUAL Y BORRADO DE FICHAJE (ADMIN) -->
-    <div id="modalEditarFichaje" class="hidden fixed inset-0 z-[110] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-slate-900/95 border border-slate-700/60 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full animate-fade-in relative overflow-hidden backdrop-blur-xl">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
-            
-            <input type="hidden" id="edit-id">
-            <input type="hidden" id="edit-operaria">
-            <input type="hidden" id="edit-fecha">
-            
-            <div class="text-center mb-6">
-                <div class="bg-slate-800/80 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 border border-slate-700/50 shadow-inner">
-                    <i data-lucide="calendar-check" class="w-8 h-8"></i>
-                </div>
-                <h3 id="edit-titulo-modal" class="text-xl font-black text-white">Gestionar Registro</h3>
-                <div id="edit-nombre-fecha" class="text-sm mt-2 leading-relaxed"></div>
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-xs font-bold text-slate-400 uppercase text-center mb-2">Tipo de Registro</label>
-                <!-- Desplegable dinámico -->
-                <select id="edit-tipo" onchange="toggleEditTipo()" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white font-bold text-center appearance-none shadow-inner">
-                </select>
-            </div>
-            
-            <div id="edit-time-container" class="grid grid-cols-2 gap-4 mb-8">
-                <div class="space-y-2 text-center">
-                    <label class="block text-xs font-bold text-slate-400 uppercase">Entrada</label>
-                    <select id="edit-entrada" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white appearance-none font-black text-xl shadow-inner mx-auto text-center"></select>
-                </div>
-                <div class="space-y-2 text-center">
-                    <label class="block text-xs font-bold text-slate-400 uppercase">Salida</label>
-                    <select id="edit-salida" class="w-full py-3 bg-slate-950/80 border border-slate-700/60 rounded-xl focus:ring-2 focus:ring-blue-500/50 text-white appearance-none font-black text-xl shadow-inner mx-auto text-center"></select>
-                </div>
-            </div>
-            
-            <div class="flex flex-col gap-3">
-                <button type="button" onclick="guardarEdicionFichaje()" class="w-full py-3.5 bg-emerald-600/90 hover:bg-emerald-500 border border-emerald-500/50 text-white rounded-xl font-black transition-all text-sm shadow-md flex justify-center items-center gap-2">
-                    <i data-lucide="save" class="w-4 h-4"></i> GUARDAR CAMBIOS
-                </button>
-                <button type="button" id="btn-borrar-fichaje" onclick="borrarFichajeActivo()" class="w-full py-3.5 bg-red-900/60 hover:bg-red-800 border border-red-800/50 text-red-200 hover:text-white rounded-xl font-bold transition-all text-sm shadow-md flex justify-center items-center gap-2">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i> ELIMINAR FICHAJE
-                </button>
-                <button type="button" onclick="cerrarModalEdicion()" class="w-full py-3 text-slate-400 hover:text-white font-bold transition-all text-sm mt-2">
                     Cancelar
                 </button>
             </div>
@@ -1313,6 +1313,41 @@
         window.cerrarModalDetalleDia = function() {
             modalDetalleDia.classList.add('hidden');
             modalDetalleDia.classList.remove('flex');
+        };
+
+        window.abrirModalEdicion = function(id, operaria, fecha, entrada, salida) {
+            document.getElementById('edit-id').value = id || '';
+            document.getElementById('edit-operaria').value = operaria;
+            document.getElementById('edit-fecha').value = fecha;
+            
+            const [y, m, d] = fecha.split('-');
+            document.getElementById('edit-nombre-fecha').innerHTML = `<span class="text-emerald-400 text-lg">${operaria}</span><br><span class="text-slate-400">${d}/${m}/${y}</span>`;
+            document.getElementById('edit-titulo-modal').textContent = id ? "Editar Registro" : "Añadir Registro";
+            
+            if (specialStatuses.includes(entrada)) {
+                const selectTipo = document.getElementById('edit-tipo');
+                if (!Array.from(selectTipo.options).some(opt => opt.value === entrada)) {
+                    selectTipo.insertAdjacentHTML('beforeend', `<option value="${entrada}">${entrada}</option>`);
+                }
+                selectTipo.value = entrada;
+                document.getElementById('edit-entrada').value = '';
+                document.getElementById('edit-salida').value = '';
+            } else {
+                document.getElementById('edit-tipo').value = 'HORAS';
+                document.getElementById('edit-entrada').value = entrada || '';
+                document.getElementById('edit-salida').value = salida || '';
+            }
+            window.toggleEditTipo();
+            
+            const btnDelete = document.getElementById('btn-borrar-fichaje');
+            if(id) {
+                btnDelete.style.display = 'flex';
+            } else {
+                btnDelete.style.display = 'none';
+            }
+            
+            document.getElementById('modalEditarFichaje').classList.remove('hidden');
+            document.getElementById('modalEditarFichaje').classList.add('flex');
         };
 
         window.toggleEditTipo = function() {

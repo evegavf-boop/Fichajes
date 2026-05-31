@@ -468,6 +468,9 @@
                     <button onclick="switchAdminTab('tab-descargas')" id="btn-tab-descargas" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-sm transition-all whitespace-nowrap bg-slate-900/80 text-slate-300 hover:text-white border-b-2 border-transparent backdrop-blur-md hover:bg-slate-800/90">
                         <i data-lucide="download" class="inline w-4 h-4 mr-2 relative -top-0.5"></i> Exportar e Informes
                     </button>
+                    <button onclick="switchAdminTab('tab-calendario-admin')" id="btn-tab-calendario-admin" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-sm transition-all whitespace-nowrap bg-slate-900/80 text-slate-300 hover:text-white border-b-2 border-transparent backdrop-blur-md hover:bg-slate-800/90">
+                        <i data-lucide="calendar-range" class="inline w-4 h-4 mr-2 relative -top-0.5"></i> Calendario 2026
+                    </button>
                     <button onclick="switchAdminTab('tab-ajustes')" id="btn-tab-ajustes" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-sm transition-all whitespace-nowrap bg-slate-900/80 text-slate-300 hover:text-white border-b-2 border-transparent backdrop-blur-md hover:bg-slate-800/90">
                         <i data-lucide="users-cog" class="inline w-4 h-4 mr-2 relative -top-0.5"></i> Personal
                     </button>
@@ -606,20 +609,43 @@
                             </button>
                         </div>
                         <div class="mt-8 max-w-2xl mx-auto">
-                            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide mb-4">Vista previa (Últimos 5 registros filtrados)</h4>
-                            <div class="overflow-x-auto rounded-xl border border-slate-700/50 bg-slate-950">
-                                <table class="w-full text-left text-sm text-slate-300">
-                                    <tbody id="previewTablaExport" class="divide-y divide-slate-800">
-                                        <!-- Autocompletado -->
-                                    </tbody>
-                                </table>
-                            </div>
+                        <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide mb-4">Vista previa (Últimos 5 registros filtrados)</h4>
+                        <div class="overflow-x-auto rounded-xl border border-slate-700/50 bg-slate-950">
+                            <table class="w-full text-left text-sm text-slate-300">
+                                <tbody id="previewTablaExport" class="divide-y divide-slate-800">
+                                    <!-- Autocompletado -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div id="tab-ajustes" class="admin-tab-content hidden animate-fade-in">
-                    <div class="max-w-4xl mx-auto">
+            <!-- NUEVA PESTAÑA ADMIN: CALENDARIO 2026 -->
+            <div id="tab-calendario-admin" class="admin-tab-content hidden animate-fade-in">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-slate-700/50 pb-6">
+                    <div>
+                        <h3 class="text-3xl font-black text-white drop-shadow-md">Año 2026</h3>
+                        <p class="text-sm text-slate-400 mt-1">Gestión de Festivos y visualización de Vacaciones</p>
+                    </div>
+                    <div class="flex gap-4 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 rounded-full bg-red-500 border border-red-400"></div>
+                            <span class="text-xs font-bold text-slate-300">Festivo</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 rounded-full bg-teal-500 border border-teal-300"></div>
+                            <span class="text-xs font-bold text-slate-300">Vacaciones</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="calendario-admin-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Se rellena por JS -->
+                </div>
+            </div>
+
+            <div id="tab-ajustes" class="admin-tab-content hidden animate-fade-in">
+                <div class="max-w-4xl mx-auto">
                         <div class="text-center mb-8">
                             <h3 class="text-2xl font-black text-white">Gestión de Personal</h3>
                             <p class="text-sm text-slate-400 mt-1">Añade o edita trabajadoras y tipos de fichaje</p>
@@ -997,8 +1023,7 @@
 
             const calSel = document.getElementById('calLoginSelect');
             if(calSel) {
-                let html = '<option value="" disabled selected>Selecciona tu usuario...</option>';
-                html += '<option value="ADMIN" class="font-bold text-orange-400">⭐ Administrador (Festivos)</option>';
+                let html = '<option value="" disabled selected>Selecciona tu nombre...</option>';
                 NOMBRES.forEach(n => html += `<option value="${n}">${n}</option>`);
                 calSel.innerHTML = html;
             }
@@ -1303,7 +1328,7 @@
             const pin = document.getElementById('calLoginPin').value;
             const errorElement = document.getElementById('errorCalLogin');
 
-            let pinCorrecto = (user === 'ADMIN') ? PIN_ADMIN : PIN_OPERARIAS[user];
+            let pinCorrecto = PIN_OPERARIAS[user];
 
             if (pin === pinCorrecto) {
                 errorElement.classList.add('hidden');
@@ -1311,8 +1336,9 @@
                 CALENDAR_LOGGED_IN = user;
                 
                 navigateTo('calendar-main');
-                const displayName = user === 'ADMIN' ? 'Administrador' : user;
-                document.getElementById('cal-panel-name').textContent = displayName;
+                document.getElementById('cal-panel-name').textContent = user;
+                
+                renderizarCalendario2026();
                 iniciarSincronizacionGlobal();
             } else {
                 errorElement.classList.remove('hidden');
@@ -1321,8 +1347,21 @@
         });
 
         function renderizarCalendario2026() {
+            const isAdmin = document.getElementById('tab-calendario-admin') && !document.getElementById('tab-calendario-admin').classList.contains('hidden');
+            const isWorker = document.getElementById('view-calendar-main').classList.contains('active');
+            
+            if (isAdmin) {
+                _renderizar('calendario-admin-grid', 'ADMIN');
+            }
+            if (isWorker && CALENDAR_LOGGED_IN && CALENDAR_LOGGED_IN !== 'ADMIN') {
+                _renderizar('calendario-2026-grid', CALENDAR_LOGGED_IN);
+            }
+        }
+
+        function _renderizar(containerId, role) {
             const year = 2026;
-            const container = document.getElementById('calendario-2026-grid');
+            const container = document.getElementById(containerId);
+            if(!container) return;
             container.innerHTML = '';
             
             const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -1352,24 +1391,24 @@
                     
                     let isFestivo = data.festivo;
                     let hasVacaciones = data.vacaciones && data.vacaciones.length > 0;
-                    let misVac = CALENDAR_LOGGED_IN !== 'ADMIN' && data.vacaciones && data.vacaciones.includes(CALENDAR_LOGGED_IN);
+                    let misVac = role !== 'ADMIN' && data.vacaciones && data.vacaciones.includes(role);
                     
                     let bgClass = "hover:bg-slate-700/50 text-slate-300 bg-slate-800/40 border-transparent";
                     let badgeHTML = '';
 
                     if (isFestivo) {
                         bgClass = "bg-red-500/90 text-white shadow-[0_0_8px_rgba(239,68,68,0.4)]";
-                    } else if (CALENDAR_LOGGED_IN === 'ADMIN' && hasVacaciones) {
+                    } else if (role === 'ADMIN' && hasVacaciones) {
                         bgClass = "bg-teal-600/90 text-white shadow-sm";
                     } else if (misVac) {
                         bgClass = "bg-teal-500/90 text-white shadow-[0_0_8px_rgba(20,184,166,0.4)]";
                     }
                     
-                    if (isFestivo && ((CALENDAR_LOGGED_IN === 'ADMIN' && hasVacaciones) || misVac)) {
+                    if (isFestivo && ((role === 'ADMIN' && hasVacaciones) || misVac)) {
                         badgeHTML = `<div class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-200 shadow-md"></div>`;
                     }
 
-                    html += `<div onclick="abrirModalCalendario('${dateISO}')" class="relative cursor-pointer aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition-all ${bgClass}">
+                    html += `<div onclick="abrirModalCalendario('${dateISO}', '${role}')" class="relative cursor-pointer aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition-all ${bgClass}">
                                 ${d}
                                 ${badgeHTML}
                              </div>`;
@@ -1379,7 +1418,8 @@
             container.innerHTML = html;
         }
 
-        window.abrirModalCalendario = function(dateStr) {
+        window.abrirModalCalendario = function(dateStr, role) {
+            role = role || CALENDAR_LOGGED_IN;
             document.getElementById('cal-selected-date').value = dateStr;
             const data = calendario2026Data[dateStr] || {festivo: false, vacaciones: []};
             
@@ -1390,15 +1430,17 @@
             
             document.getElementById('cal-modal-fecha').textContent = `${dias[dateObj.getDay()]}, ${d} de ${mesesNombres[parseInt(m)-1]}`;
             
-            if(CALENDAR_LOGGED_IN === 'ADMIN') {
+            if(role === 'ADMIN') {
                 document.getElementById('admin-cal-options').classList.remove('hidden');
                 document.getElementById('worker-cal-options').classList.add('hidden');
                 document.getElementById('cal-festivo-check').checked = data.festivo;
                 document.getElementById('cal-vacaciones-list').textContent = (data.vacaciones && data.vacaciones.length > 0) ? data.vacaciones.join(', ') : 'Ninguna';
+                document.getElementById('modalCalendarAction').dataset.role = 'ADMIN';
             } else {
                 document.getElementById('admin-cal-options').classList.add('hidden');
                 document.getElementById('worker-cal-options').classList.remove('hidden');
-                document.getElementById('cal-vacaciones-check').checked = data.vacaciones && data.vacaciones.includes(CALENDAR_LOGGED_IN);
+                document.getElementById('cal-vacaciones-check').checked = data.vacaciones && data.vacaciones.includes(role);
+                document.getElementById('modalCalendarAction').dataset.role = role;
                 
                 const vacLabel = document.getElementById('cal-vacaciones-label');
                 if(data.festivo) {
@@ -1424,18 +1466,19 @@
 
         window.guardarModalCalendario = async function() {
             const dateStr = document.getElementById('cal-selected-date').value;
+            const role = document.getElementById('modalCalendarAction').dataset.role;
             let data = calendario2026Data[dateStr] || {festivo: false, vacaciones: []};
             if(!data.vacaciones) data.vacaciones = [];
             
-            if(CALENDAR_LOGGED_IN === 'ADMIN') {
+            if(role === 'ADMIN') {
                 data.festivo = document.getElementById('cal-festivo-check').checked;
             } else {
                 if(!data.festivo) {
                     const checked = document.getElementById('cal-vacaciones-check').checked;
-                    if(checked && !data.vacaciones.includes(CALENDAR_LOGGED_IN)) {
-                        data.vacaciones.push(CALENDAR_LOGGED_IN);
-                    } else if (!checked && data.vacaciones.includes(CALENDAR_LOGGED_IN)) {
-                        data.vacaciones = data.vacaciones.filter(v => v !== CALENDAR_LOGGED_IN);
+                    if(checked && !data.vacaciones.includes(role)) {
+                        data.vacaciones.push(role);
+                    } else if (!checked && data.vacaciones.includes(role)) {
+                        data.vacaciones = data.vacaciones.filter(v => v !== role);
                     }
                 }
             }
@@ -1567,12 +1610,14 @@
                     } else {
                         calendario2026Data = {};
                     }
-                    if (document.getElementById('view-calendar-main').classList.contains('active')) {
+                    if (document.getElementById('view-calendar-main').classList.contains('active') || document.getElementById('view-admin-panel').classList.contains('active')) {
                         renderizarCalendario2026();
                     }
+                }, (error) => {
+                    console.error("Error sincronizando el calendario:", error);
                 });
             } else if (unsubscribeCalSnapshot) {
-                if (document.getElementById('view-calendar-main').classList.contains('active')) renderizarCalendario2026();
+                if (document.getElementById('view-calendar-main').classList.contains('active') || document.getElementById('view-admin-panel').classList.contains('active')) renderizarCalendario2026();
             }
         }
 
@@ -1782,6 +1827,7 @@
             activeBtn.classList.add('text-white', 'border-emerald-400', 'bg-emerald-600/90');
             
             if(tabId === 'tab-cuadrante') generarCuadranteHTML();
+            if(tabId === 'tab-calendario-admin') renderizarCalendario2026();
             if(tabId === 'tab-seguridad') {
                 const w = document.getElementById('selectPinWorker').value;
                 document.getElementById('inputNewPinOp').value = PIN_OPERARIAS[w] || '';
